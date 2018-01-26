@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>阿母驿家管理系统 </title>
+
+    @Styles.Render("~/H5/css")
+    @if (IsSectionDefined("Styles"))
+    {@RenderSection("Styles", required: false)}
+     </head>
+     <body>
+     <div class="container">
+         <div class="row">
+             @RenderBody()
+         </div>
+     </div>
+     @Scripts.Render("~/H5/bundles/jquery")
+     @Scripts.Render("~/bundles/bootstrap")
+     @Scripts.Render("~/plugins/layer")
+     @RenderSection("scripts", required: false)
+     </body>
+     </html>

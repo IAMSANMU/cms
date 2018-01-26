@@ -1,0 +1,10 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    @try
+    {
+        @Html.Raw(File.ReadAllText(Server.MapPath("/Note.html")))
+    }
+    catch
+    {
+    }

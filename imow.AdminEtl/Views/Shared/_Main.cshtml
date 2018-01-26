@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Tabs = ViewBag.Tabs ?? new string[] { "列表_list" };
+    ViewBag.tab = ViewBag.tab ?? "list";
+}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="hidden">
+        <input type="hidden" id="_tab" value="@ViewBag.tab" />
+        <input type="hidden" id="_perm" value="@WorkContext.PermStr" />
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="tabs-container">
+                <ul class="nav nav-tabs" id="myTabs">
+                    @foreach (var item in ViewBag.Tabs)
+                    {
+                        string tmp = item.ToString();
+                        var arr = tmp.Split('_');
+                        <li class="@(arr[1] == ViewBag.tab.ToString() ? "active" : "")"><a data-toggle="tab" href="#tab" data-type="@arr[1]" aria-expanded="true"> @arr[0]</a></li>
+                    }
+                </ul>
+                <div class="tab-content">
+                    <div id="tab" class="tab-pane active">
+                        <div class="panel-body">
+                            @if (IsSectionDefined("searchBar"))
+                            {
+                                <div class="ibox">
+                                    <div class="ibox-title">
+                                        <h5>搜索</h5>
+                                        <div class="ibox-tools">
+                                            <a class="collapse-link">
+                                                <i class="fa fa-chevron-up"></i>
+                                            </a>
+                                            <a class="close-link">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="ibox-content" id="search-content">
+                                        <div class="row">
+                                            @RenderSection("searchBar", false)
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    @RenderSection("toolbar", false)
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="ibox-content">
+                                        <div class="table-responsive">
+                                            @RenderSection("table", false)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section scripts{
+        @RenderSection("Scripts", required: false)
+        @Scripts.Render("~/plugins/dataTables")
+        @Scripts.Render("~/plugins/ladda")
+        @Scripts.Render("~/plugins/layer")
+    }
+    @section Styles
+    {
+        @RenderSection("Styles", required: false)
+        @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+        @Styles.Render("~/plugins/laddaStyles")
+    }
+</div>
+
+@Html.Partial("_Modal")
