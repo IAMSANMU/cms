@@ -1,4 +1,4 @@
-﻿@model imow.AdminEtl.Areas.Admin.Models.Admin.AdminModuleModel
+﻿@model imow.AdminEtl.Areas.Admin.Models.Admin.CompanyModel
 @{
     Layout = "~/Views/Shared/_EmptyLayout.cshtml";
 }
@@ -9,11 +9,11 @@
     <div class="row">
         <div class="col-sm-12 ibox">
             <div class="ibox-content">
-                <form role="form" id="saveForm" class="form-horizontal" method="post" action="@Url.Action("Update","Module")">
+                <form role="form" id="saveForm" class="form-horizontal" method="post" action="/Company/Update">
                     <div class="form-group">
                         <label class="col-sm-4 control-label">父级:</label>
                         <div class="col-sm-6 form-control-static">
-                            <input type="hidden" name="ID" value="@Model.Entity.Id" />
+                            <input type="hidden" name="Id" id="id" value="@Model.Entity.Id" />
                             @Html.Raw(Model.ParentModule == null ? "顶级模块" : Model.ParentModule.Name)
                             <!-- 占位 -->
                         </div>
@@ -25,18 +25,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">菜单地址:</label>
+                        <label class="col-sm-4 control-label">是否禁用:</label>
                         <div class="col-sm-6">
-                            <input type="text" name="Url" value="@Model.Entity.Url" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">显示在菜单栏上:</label>
-                        <div class="col-sm-6">
-                            <div class="checkbox "><input type="checkbox" class="i-checks" name="IsShow" value="true" @if (Model.Entity.IsShow)
-                                                                                                         {
-                                                                                                             @Html.Raw("checked='checked'")
-                                                                                                         }/></div>
+                            <div class="checkbox "><input type="checkbox" class="i-checks" value="true" name="IsDel" @(Model.Entity.IsDel?"checked='checked'":"")/></div>
                         </div>
                     </div>
                     <div class="form-group text-center">
@@ -54,7 +45,7 @@
 
 @section Scripts {
     @Scripts.Render("~/plugins/validate")
-    @Scripts.Render("~/Areas/Admin/Scripts/module/edit.js")
+    @Scripts.Render("~/Scripts/app/admin/company/edit.js")
 }
 
 

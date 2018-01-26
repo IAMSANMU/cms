@@ -94,6 +94,7 @@
     <Compile Include="EntityModel\Admin\AdminRoleModuleEntity.cs" />
     <Compile Include="EntityModel\Admin\AdminUserEntity.cs" />
     <Compile Include="EntityModel\Admin\AdminUserRoleEntity.cs" />
+    <Compile Include="EntityModel\Admin\CompanyStrutsEntity.cs" />
     <Compile Include="EntityModel\AreaEntity.cs" />
     <Compile Include="EntityModel\SearchModel.cs" />
     <Compile Include="EnumAttribute.cs" />

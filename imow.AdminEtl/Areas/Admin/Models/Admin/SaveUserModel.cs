@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace imow.AdminEtl.Models.Admin
+﻿namespace imow.AdminEtl.Areas.Admin.Models.Admin
 {
     public class SaveUserModel
     {

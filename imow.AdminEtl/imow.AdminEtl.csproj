@@ -132,6 +132,8 @@
     <Compile Include="App_Start\PermissionFilter.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
+    <Compile Include="Areas\Admin\Models\Admin\CompanyModel.cs" />
     <Compile Include="Binder\ListSearchModelModelBinder.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ModuleController.cs" />
@@ -143,14 +145,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
-    <Compile Include="Areas\Admin\Models\AdminModuleModel.cs" />
-    <Compile Include="Areas\Admin\Models\AdminUserModel.cs" />
-    <Compile Include="Areas\Admin\Models\HomeModel.cs" />
-    <Compile Include="Areas\Admin\Models\SaveUserModel.cs" />
+    <Compile Include="Areas\Admin\Models\Admin\AdminModuleModel.cs" />
+    <Compile Include="Areas\Admin\Models\Admin\AdminUserModel.cs" />
+    <Compile Include="Areas\Admin\Models\Admin\HomeModel.cs" />
+    <Compile Include="Areas\Admin\Models\Admin\SaveUserModel.cs" />
     <Compile Include="Models\ListSearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Scripts\company\edit.js" />
+    <Content Include="Areas\Admin\Scripts\company\index.js" />
     <Content Include="changeLog.txt" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\app\user\empty.jpg" />
@@ -353,6 +357,9 @@
     <Content Include="Areas\Admin\Views\Role\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Company\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Company\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Company\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Inspinia.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Images\a1.jpg" />

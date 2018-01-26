@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using imow.AdminEtl.Models.Admin;
+using imow.AdminEtl.Areas.Admin.Models.Admin;
 using imow.Framework.Strategy.Controller;
 using imow.Framework.Strategy.Filter;
 using imow.Model.EntityModel.Admin;

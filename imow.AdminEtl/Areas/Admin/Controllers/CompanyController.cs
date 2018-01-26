@@ -1,26 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using EC.Common.Extensions;
 using imow.AdminEtl.Areas.Admin.Models.Admin;
 using imow.AdminEtl.Models;
 using imow.Framework.Strategy.Controller;
+using imow.Framework.Strategy.Filter;
 using imow.Framework.Tool;
 using imow.Model.EntityModel.Admin;
 using imow.Services.BussinessService.Admin;
+using Newtonsoft.Json;
 
 namespace imow.AdminEtl.Areas.Admin.Controllers
 {
-    public class ModuleController : BaseController
+    public class CompanyController : BaseController
     {
-        private readonly PermissionService _permService;
+        private readonly CompanyStrutsService _companyService;
 
-        public ModuleController(PermissionService permService)
+        public CompanyController(CompanyStrutsService companyService)
         {
-            _permService = permService;
+            _companyService = companyService;
         }
-        #region 模块相关操作
 
-        public ActionResult Index(int? pid,string tab)
+        public ActionResult Index(long? pid, string tab)
         {
             tab = string.IsNullOrEmpty(tab) ? "list" : tab;
             ViewBag.tab = tab;
@@ -29,7 +33,7 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
             //根据pid 获取parentId
             if (pid > 0)
             {
-                var entity = _permService.Get<AdminModuleEntity>(pid.Value.ToString());
+                var entity = _companyService.Get(pid.Value.ToString());
                 ViewBag.ppid = entity.Pid;
             }
             else
@@ -38,13 +42,14 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
             }
             return View();
         }
-        [HttpPost]
-        [PermissionFilter("/Module/Index")]
+        [PermissionFilter("/Company/Index")]
+
         public ActionResult List(ListSearchModel model)
         {
+
             long count;
-            var list = _permService.GetModuleList(model.PageSize, model.PageIndex, model.Order, model.OrderType, model.SearchModels, out count);
-            DatatablesJson<AdminModuleEntity> json = new DatatablesJson<AdminModuleEntity>
+            var list = _companyService.GetListByPage(model.PageSize, model.PageIndex, model.Order, model.OrderType, model.SearchModels, out count);
+            DatatablesJson<CompanyStrutsEntity> json = new DatatablesJson<CompanyStrutsEntity>
             {
                 Data = list,
                 RecordsFiltered = count,
@@ -52,37 +57,38 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
             };
             return Content(json.ToJsonString());
         }
-        [PermissionFilter("/Module/Modify")]
-        public ActionResult Edit(int id)
+
+        [PermissionFilter("/Company/Modify")]
+        public ActionResult Edit(long id)
         {
-            var entity = _permService.Get<AdminModuleEntity>(id.ToString());
+            var entity = _companyService.Get(id.ToString());
             if (entity == null)
             {
                 return InvokeHttp404();
             }
-            var parent = _permService.Get<AdminModuleEntity>(entity.Pid.ToString());
-            AdminModuleModel model = new AdminModuleModel
+            var parent = _companyService.Get(entity.Pid.ToString());
+            CompanyModel model = new CompanyModel
             {
                 Entity = entity,
                 ParentModule = parent
             };
             return View(model);
         }
-        [PermissionFilter("/Module/Modify")]
-        public ActionResult Add(int pid)
+        [PermissionFilter("/Company/Modify")]
+        public ActionResult Add(long pid)
         {
-            var parent = _permService.Get<AdminModuleEntity>(pid.ToString());
-            AdminModuleModel model = new AdminModuleModel
+            var parent = _companyService.Get(pid.ToString());
+            CompanyModel model = new CompanyModel
             {
                 ParentModule = parent
             };
             return View(model);
         }
-        [PermissionFilter("/Module/Modify")]
-        public ActionResult Update(AdminModuleEntity model)
+        [PermissionFilter("/Company/Modify")]
+        public ActionResult Update(CompanyStrutsEntity model)
         {
             JsonResponse jsonResult = new JsonResponse();
-            var entity = _permService.Get<AdminModuleEntity>(model.Id.ToString());
+            var entity = _companyService.Get(model.Id.ToString());
             if (entity == null)
             {
                 jsonResult.Success = false;
@@ -93,9 +99,8 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
                 try
                 {
                     entity.Name = model.Name;
-                    entity.Url = model.Url;
-                    entity.IsShow = model.IsShow;
-                    _permService.Update(entity);
+                    entity.IsDel = model.IsDel;
+                    _companyService.Update(entity);
                     jsonResult.Success = true;
                 }
                 catch (Exception e)
@@ -105,13 +110,13 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
             }
             return jsonResult.ToJsonResult();
         }
-        [PermissionFilter("/Module/Modify")]
-        public ActionResult Save(AdminModuleEntity model)
+        [PermissionFilter("/Company/Modify")]
+        public ActionResult Save(CompanyStrutsEntity model)
         {
             JsonResponse jsonResult = new JsonResponse();
             try
             {
-                _permService.AddModule(model);
+                _companyService.Add(model);
                 jsonResult.Success = true;
             }
             catch (Exception e)
@@ -121,7 +126,7 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
             return jsonResult.ToJsonResult();
         }
 
-        [PermissionFilter("/Module/Modify")]
+        [PermissionFilter("/Company/Modify")]
         public ActionResult Delete(string ids)
         {
             JsonResponse jsonResult = new JsonResponse();
@@ -134,7 +139,7 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
                 }
                 else
                 {
-                    _permService.DeleteModule(ids.SplitRemoveEmptyToInt32(','));
+                    _companyService.Delete(ids.SplitRemoveEmptyToInt64(','));
                     jsonResult.Success = true;
                 }
             }
@@ -144,7 +149,7 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
             }
             return jsonResult.ToJsonResult();
         }
-        [PermissionFilter("/Module/Modify")]
+        [PermissionFilter("/Company/Modify")]
         public ActionResult Restore(string ids)
         {
             JsonResponse jsonResult = new JsonResponse();
@@ -157,7 +162,7 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
                 }
                 else
                 {
-                    _permService.RestoreModule(ids.SplitRemoveEmptyToInt32(','));
+                    _companyService.Restore(ids.SplitRemoveEmptyToInt64(','));
                     jsonResult.Success = true;
                 }
             }
@@ -167,7 +172,8 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
             }
             return jsonResult.ToJsonResult();
         }
-        #endregion
+
+
 
     }
 }

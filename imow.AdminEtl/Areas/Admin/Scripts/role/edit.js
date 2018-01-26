@@ -16,7 +16,7 @@
     });
     function initTree() {
         var roleId = $("#roleId").val();
-        var url = "/Role/GetTreeJson";
+        var url = "/Admin/Role/GetTreeJson";
         if (roleId !== "") {
             url = url + "?roleId=" + roleId;
         }
