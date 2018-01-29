@@ -48,6 +48,7 @@ namespace imow.Framework.Strategy
             builder.RegisterType<AdminRepository>().As<IAdminRepository>().InstancePerLifetimeScope();
             builder.RegisterType<PermissionRepository>().As<IPermissionRepository>().InstancePerLifetimeScope();
             builder.RegisterType<CompanyStrutsRepository>().As<ICompanyStrutsRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<ClassRepository>().As<IClassRepository>().InstancePerLifetimeScope();
 
         }
 

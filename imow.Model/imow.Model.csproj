@@ -38,6 +38,10 @@
       <HintPath>..\packages\Autofac.Mvc5.3.3.4\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.7.4.0\lib\net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
@@ -95,8 +99,17 @@
     <Compile Include="EntityModel\Admin\AdminUserEntity.cs" />
     <Compile Include="EntityModel\Admin\AdminUserRoleEntity.cs" />
     <Compile Include="EntityModel\Admin\CompanyStrutsEntity.cs" />
+    <Compile Include="EntityModel\Admin\TemplateEntity.cs" />
     <Compile Include="EntityModel\AreaEntity.cs" />
+    <Compile Include="EntityModel\Admin\ArticleEntity.cs" />
+    <Compile Include="EntityModel\Admin\ClassEntity.cs" />
+    <Compile Include="EntityModel\Admin\ContextEntity.cs" />
+    <Compile Include="EntityModel\Admin\PhotoEntity.cs" />
+    <Compile Include="EntityModel\Admin\PhotoImgEntity.cs" />
+    <Compile Include="EntityModel\Admin\SchoolEntity.cs" />
     <Compile Include="EntityModel\SearchModel.cs" />
+    <Compile Include="EntityModel\Admin\StaffEntity.cs" />
+    <Compile Include="EntityModel\Admin\StaffStrutsEntity.cs" />
     <Compile Include="EnumAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

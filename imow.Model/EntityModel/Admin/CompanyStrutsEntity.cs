@@ -15,7 +15,7 @@ namespace imow.Model.EntityModel.Admin
         /// <summary>
         ///Id
         /// </summary>
-        public Int64 Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         ///名称
@@ -71,7 +71,7 @@ namespace imow.Model.EntityModel.Admin
         {
             base.Table("ecCompanyStruts");
             //Map(f => f.UserID).Ignore();//设置忽略
-            Map(f => f.Id).Key(KeyType.Assigned);//设置主键  (如果主键名称不包含字母“ID”，请设置)    
+            Map(f => f.Id).Key(KeyType.Identity);//设置主键  (如果主键名称不包含字母“ID”，请设置)    
            
             AutoMap();
         }

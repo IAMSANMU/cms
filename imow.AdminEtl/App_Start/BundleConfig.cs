@@ -241,7 +241,7 @@ namespace imow.AdminEtl
 
             // summernote 
             bundles.Add(new ScriptBundle("~/plugins/summernote").Include(
-                      "~/Scripts/plugins/summernote/summernote.min.js"));
+                      "~/Scripts/plugins/summernote/summernote.min.js", "~/Scripts/plugins/summernote/summernote-zh-CN.js"));
 
             // toastr notification 
             bundles.Add(new ScriptBundle("~/plugins/toastr").Include(

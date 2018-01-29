@@ -52,23 +52,14 @@ namespace imow.Framework.Strategy.ViewEngines.Razor
             }
         }
 
-        public string ProductImage(string imageUrl)
-        {
-            var uploadImageUrl = ImowEngineContext.Current.ResolveConfig<ImowConfig>().ProductUploadImageUrl;
-            return string.Concat(uploadImageUrl, imageUrl);
-        }
-
+        
         public string Image(string imageUrl)
         {
             var uploadImageUrl = ImowEngineContext.Current.ResolveConfig<ImowConfig>().ImageUrl;
             return string.Concat(uploadImageUrl, imageUrl);
         }
 
-        public string UserImage(string imageUrl)
-        {
-            var uploadImageUrl = ImowEngineContext.Current.ResolveConfig<ImowConfig>().UserUploadImageUrl;
-            return string.Concat(uploadImageUrl, imageUrl);
-        }
+      
 
     }
 

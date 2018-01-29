@@ -38,9 +38,6 @@
       <HintPath>..\packages\Autofac.Mvc5.3.3.4\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="imow.Repository">
-      <HintPath>..\imow.AdminEtl\Bin\imow.Repository.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
@@ -79,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\IClassRepository.cs" />
     <Compile Include="Admin\ICompanyStrutsRepository.cs" />
     <Compile Include="Admin\IPermissionRepository.cs" />
     <Compile Include="Admin\IAdminRepository.cs" />

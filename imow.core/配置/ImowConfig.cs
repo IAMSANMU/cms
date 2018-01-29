@@ -95,21 +95,19 @@ namespace imow.Core.config
         #endregion
 
 
-        public string SolrUrl { get; set; }
 
-        private double _couponImowDiscountRate;
-
-        /// <summary>
-        /// 2-7大类阿母币可抵用比例
-        /// </summary>
-        public decimal CouponImowDiscountRate;
 
         /// <summary>
         /// 图片上传路径
         /// </summary>
-        public string ProductUploadImageUrl { get; set; }
+        public string SchoolUpload { get; set; }
+        public string HeadUpload { get; set; }
 
-        public string UserUploadImageUrl { get; set; }
+        public string ClassUpload { get; set; }
+
+        public string ContextUpload { get; set; }
+
+        public string TemplateUpload { get; set; }
 
         /// <summary>
         /// 图片地址
@@ -121,15 +119,7 @@ namespace imow.Core.config
         /// </summary>
         public bool Profiler { get; set; }
 
-        #region 团购活动用于统计的peizhi
 
-        public  string ProductActiveStartTime { get; set; }
-        public string ProductActiveEndTime { get; set; }
-        #endregion
-
-
-
-        public string ProductBasePhysicalPath { get; set; }
 
     }
 }

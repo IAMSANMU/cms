@@ -22,7 +22,6 @@ namespace imow.Services.BussinessService.Admin
     {
         private readonly IPermissionRepository _permDao;
         private readonly CacheFactory _cache;
-
         public PermissionService(IPermissionRepository permDao, CacheFactory cache)
         {
             _cache = cache;

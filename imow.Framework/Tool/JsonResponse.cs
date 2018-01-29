@@ -83,29 +83,4 @@ namespace imow.Framework.Tool
 
         #endregion
     }
-
-    /// <summary>
-    /// JSON response 泛型
-    /// </summary>
-    public class JsonResponse<T>
-    {
-        #region Properties
-
-        /// <summary>
-        /// 获取或设置返回的数据
-        /// </summary>
-        public T Data { get; set; }
-
-        /// <summary>
-        /// 获取或者设置消息（比如错误消息）
-        /// </summary>
-        public string Message { get; set; }
-
-        /// <summary>
-        ///  获取或者设置是否成功
-        /// </summary>
-        public bool Success { get; set; }
-
-        #endregion
-    }
 }

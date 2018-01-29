@@ -46,7 +46,5 @@ namespace imow.IRepository
         /// <returns></returns>
         IEnumerable<T> GetListByPage<T>( int pageSize, int pageIndex, string sort, string sortType, List<SearchModel> searchModels, out long count) where T : class;
 
-
-
     }
 }

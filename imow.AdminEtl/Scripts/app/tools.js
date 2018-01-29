@@ -46,8 +46,8 @@ $.extend({
     permStr: "",
     okFn: function (fileBtn, result) {
         fileBtn = $(fileBtn);
-        if (result.isSuccess) {
-            $("#"+fileBtn.data("target")).val(result.path);
+        if (result.Success) {
+            $("#"+fileBtn.data("target")).val(result.Data);
         } else {
             $.alertError("上传失败");
         }
@@ -99,14 +99,14 @@ $.extend({
     },
     prompt: function(text,callback) {
         swal({
-                title: "",
-                text: text,
-                type: "input",
-                showCancelButton: true,
-                closeOnConfirm: false,
-                confirmButtonText: "确认",
-                cancelButtonText: "取消"
-            },
+            title: "",
+            text: text,
+            type: "input",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            confirmButtonText: "确认",
+            cancelButtonText: "取消"
+        },
             function (inputValue) {
                 if (inputValue === false) return false;
 
@@ -204,7 +204,7 @@ $.extend({
                         instance.stop();
                     }
                 }
-        });
+            });
     },
     //padLeft: function (value, width, paddingChar) {
     //    if (value.length < width) {
@@ -389,7 +389,7 @@ $.fn.iradio= function() {
 }
 $.fn.bindSwitch = function () {
     $(this).each(function(index,elem) {
-       var item= new Switchery(elem, { color: '#1AB394' });
+        var item= new Switchery(elem, { color: '#1AB394' });
     });
 }
 
@@ -464,10 +464,59 @@ $.fn.bindSubmit = function (option) {
     for (var i = 0; i < targets.length; i++) {
         $.ajaxForm(targets[i], $(formId), option);
     }
-
-
-   
 }
+$.fn.Textarea = function(option) {
+    option = option || {};
+    var target = $(this);
+    if (!option.callback) {
+        option.callback= function(urls) {
+            for (var item in urls) {
+                if (urls.hasOwnProperty(item)) {
+                    target.summernote('insertImage', urls[item]);
+                }
+            }
+        }
+    }
+
+    function UploadFiles(files,type, func) {
+        //这里files是因为我设置了可上传多张图片，所以需要依次添加到formData中
+        var formData = new FormData();
+        for (var f in files) {
+            if (files.hasOwnProperty(f)) {
+                formData.append("file"+f, files[f]);
+            }
+        }
+        $.ajax({
+            url: "/Admin/Upload/Index?type="+type,//后台文件上传接口
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (result) {
+                if (result.Success) {
+                    func(result.Data);
+                } else {
+                    $.alertError(result.Message);
+                }
+            }
+        });
+
+
+
+
+
+    };
+
+    target.summernote({
+        lang: 'zh-CN',
+        height: 300,
+        callbacks: {
+            onImageUpload: function(files) { //the onImageUpload API  
+                UploadFiles(files,option.type,option.callback);
+            }
+        }
+    });
+};
 
 
 function createToolbars(target) {
@@ -633,18 +682,18 @@ function createButton(target, single) {
     }
 };
 $(function(){
-	$('#myTabs a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+    $('#myTabs a[data-toggle="tab"]').on('show.bs.tab', function (e) {
         var tabType = $(this).attr("data-type");
-	    location.href = $.funcUrl("tab", tabType);
-	});
-	function addResetBtn() {
-	    var btn = $("<button type='button' class='btn btn-danger'>重置</button>");
-	    btn.click(function () {
-	        //重新加载
-	        $(this).closest("form")[0].reset();
-	        $("#search").click();
-	    })
-	    $("#search").after(btn).after("&nbsp;&nbsp;");
-	}
-	addResetBtn();
+        location.href = $.funcUrl("tab", tabType);
+    });
+    function addResetBtn() {
+        var btn = $("<button type='button' class='btn btn-danger'>重置</button>");
+        btn.click(function () {
+            //重新加载
+            $(this).closest("form")[0].reset();
+            $("#search").click();
+        })
+        $("#search").after(btn).after("&nbsp;&nbsp;");
+    }
+    addResetBtn();
 })
