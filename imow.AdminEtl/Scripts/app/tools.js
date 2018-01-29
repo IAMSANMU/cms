@@ -447,7 +447,7 @@ $.fn.bindSubmit = function (option) {
     var btn = $(this);
     $(formId).keydown(function(e) {
         if (e.keyCode === 13) {
-            btn.click();
+            //btn.click();
             return false;
         }
     });

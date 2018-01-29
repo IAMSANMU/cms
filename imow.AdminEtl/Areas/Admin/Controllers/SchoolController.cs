@@ -119,7 +119,7 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
                     else
                     {
                         model.UpdateTime =DateTime.Now;
-                        MapperHelper.Copy(model,db,ignore:new [] {"createtime","id","isdel"});
+                        MapperHelper.Copy(model,db,ignore:new [] {"createtime","id","isdel", "decodeinfo" });
                         _service.Update(db);
                         jsonResult.Success = true;
                     }

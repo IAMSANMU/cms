@@ -59,7 +59,7 @@ namespace imow.Model.EntityModel.Admin
         {
             get
             {
-                return string.IsNullOrEmpty(Info) ? "" : (StringHelper.IsBase64String(Info) ? StringHelper.UnBase64(Info) : Info);
+                return string.IsNullOrEmpty(Info) ? "" : StringHelper.UnBase64(Info);
             }
             set { Info = value; }
         }

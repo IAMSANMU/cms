@@ -126,7 +126,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Admin\Scripts\school\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Controllers\" />
     <Folder Include="Upload\" />
@@ -138,6 +137,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ClassController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TemplateController.cs" />
     <Compile Include="Areas\Admin\Controllers\UploadController.cs" />
     <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Admin\Controllers\SchoolController.cs" />
@@ -167,6 +167,10 @@
     <Content Include="Areas\Admin\Scripts\company\index.js" />
     <Content Include="Areas\Admin\Scripts\class\edit.js" />
     <Content Include="Areas\Admin\Scripts\class\index.js" />
+    <Content Include="Areas\Admin\Scripts\school\edit.js" />
+    <Content Include="Areas\Admin\Scripts\school\index.js" />
+    <Content Include="Areas\Admin\Scripts\template\edit.js" />
+    <Content Include="Areas\Admin\Scripts\template\index.js" />
     <Content Include="changeLog.txt" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\app\user\empty.jpg" />
@@ -378,6 +382,8 @@
     <Content Include="Content\plugins\summernote\font\summernote.ttf" />
     <Content Include="Areas\Admin\Views\Class\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Class\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Template\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Template\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Inspinia.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Images\a1.jpg" />

@@ -87,6 +87,10 @@ namespace imow.Model.EntityModel.Admin
         /// </summary>
         public bool IsCommand { get; set; }
         public bool IsStop { get; set; }
+        /// <summary>
+        /// 籍贯
+        /// </summary>
+        public string Origo { get; set; }
 
 
     }

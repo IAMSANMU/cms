@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EC.Common.Extensions;
-using imow.AdminEtl.Areas.Admin.Models.Admin;
 using imow.AdminEtl.Models;
 using imow.Framework.Strategy.Controller;
 using imow.Framework.Tool;
@@ -14,32 +13,27 @@ using Imow.Framework.Tool;
 
 namespace imow.AdminEtl.Areas.Admin.Controllers
 {
-    public class ClassController : BaseController
+    public class TemplateController : BaseController
     {
-        private readonly ClassService _service;
-        private readonly SchoolService _schoolService;
-        public ClassController(SchoolService schoolService, ClassService service)
+        private readonly TemplateService _service;
+        public TemplateController(TemplateService service)
         {
-            _schoolService = schoolService;
             _service = service;
         }
         public ActionResult Index(string tab)
         {
             tab = string.IsNullOrEmpty(tab) ? "list" : tab;
             ViewBag.tab = tab;
-            IEnumerable<SchoolEntity> schoolList = _schoolService.GetAll();
-            ClassModel model = new ClassModel();
-            model.SchoolList = schoolList;
-            return View(model);
+            return View();
         }
 
         [HttpPost]
-        [PermissionFilter("/Class/Index")]
+        [PermissionFilter("/Template/Index")]
         public ActionResult List(ListSearchModel searchModel)
         {
             long count = 0L;
             var list = _service.GetListByPage(searchModel.PageSize, searchModel.PageIndex, searchModel.Order, searchModel.OrderType, searchModel.SearchModels, out count);
-            DatatablesJson<ClassEntity> json = new DatatablesJson<ClassEntity>
+            DatatablesJson<TemplateEntity> json = new DatatablesJson<TemplateEntity>
             {
                 Data = list,
                 RecordsFiltered = count,
@@ -49,31 +43,26 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        [PermissionFilter("/Class/Modify")]
+        [PermissionFilter("/Template/Modify")]
         public ActionResult Add()
         {
-            //获取校区列表
-            IEnumerable<SchoolEntity>  schoolList=_schoolService.GetAll();
-            ClassModel model = new ClassModel();
-            model.SchoolList = schoolList;
-            model.Entity=new ClassEntity();
-            return View("Edit", model);
+            TemplateEntity model=new TemplateEntity();
+            return View("Edit",model);
         }
 
-        private ActionResult Add(ClassEntity model)
+        private ActionResult Add(TemplateEntity model)
         {
-            JsonResponse jsonResult = new JsonResponse();
+            JsonResponse jsonResult=new JsonResponse();
             try
             {
                 if (string.IsNullOrEmpty(model.Name))
                 {
                     jsonResult.Success = false;
-                    jsonResult.Message = "课程名称不能为空";
+                    jsonResult.Message="名称不能为空";
                 }
                 else
                 {
                     model.CreateTime = DateTime.Now;
-                    model.UpdateTime = model.CreateTime;
                     model.IsDel = false;
                     _service.Add(model);
                     jsonResult.Success = true;
@@ -87,7 +76,7 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Modify(ClassEntity model)
+        public ActionResult Modify(TemplateEntity model)
         {
             if (model.Id == 0)
             {
@@ -97,24 +86,18 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        [PermissionFilter("/Class/Modify")]
+        [PermissionFilter("/Template/Modify")]
         public ActionResult Edit(int id)
         {
-            ClassEntity entity = _service.Get(id);
-            //获取校区列表
-           
+            TemplateEntity entity = _service.Get(id);
             if (entity == null)
             {
                 return InvokeHttp404();
             }
-            IEnumerable<SchoolEntity> schoolList = _schoolService.GetAll();
-            ClassModel model = new ClassModel();
-            model.SchoolList = schoolList;
-            model.Entity = entity;
-            return View(model);
+            return View(entity);
         }
 
-        private ActionResult Edit(ClassEntity model)
+        private ActionResult Edit(TemplateEntity model)
         {
             JsonResponse jsonResult = new JsonResponse();
             try
@@ -122,11 +105,11 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
                 if (string.IsNullOrEmpty(model.Name))
                 {
                     jsonResult.Success = false;
-                    jsonResult.Message = "课程名称不能为空";
+                    jsonResult.Message = "名称不能为空";
                 }
                 else
                 {
-                    ClassEntity db = _service.Get(model.Id);
+                    TemplateEntity db =_service.Get(model.Id);
                     if (db == null)
                     {
                         jsonResult.Success = false;
@@ -134,8 +117,7 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
                     }
                     else
                     {
-                        model.UpdateTime = DateTime.Now;
-                        MapperHelper.Copy(model, db, ignore: new[] { "createtime", "id", "isdel", "decodeinfo" });
+                        MapperHelper.Copy(model,db,ignore:new [] {"createtime","id","isdel", "decodecontext" });
                         _service.Update(db);
                         jsonResult.Success = true;
                     }
@@ -149,10 +131,10 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [PermissionFilter("/Class/Modify")]
+        [PermissionFilter("/Template/Modify")]
         public ActionResult Delete(string ids)
         {
-            JsonResponse jsonResult = new JsonResponse();
+            JsonResponse jsonResult=new JsonResponse();
             try
             {
                 int[] idArr = ids.SplitRemoveEmptyToInt32(',');
@@ -166,7 +148,7 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
             return jsonResult.ToJsonResult();
         }
         [HttpPost]
-        [PermissionFilter("/Class/Modify")]
+        [PermissionFilter("/Template/Modify")]
         public ActionResult Restore(string ids)
         {
             JsonResponse jsonResult = new JsonResponse();

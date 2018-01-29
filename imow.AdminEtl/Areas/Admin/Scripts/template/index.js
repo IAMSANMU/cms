@@ -5,13 +5,13 @@
         if (tabType === "list") {
             btns = [
                 { type: "refresh" },
-                { type: "add", perm: "/Class/Modify", action: "/Admin/Class/Add" },
-                { type: "logicDelete", perm: "/Class/Modify", action: "/Admin/Class/Delete" }
+                { type: "add", perm: "/Template/Modify", action: "/Admin/Template/Add" },
+                { type: "logicDelete", perm: "/Template/Modify", action: "/Admin/Template/Delete" }
             ];
         } else {
             btns = [
                 { type: "refresh" },
-                { type: "restore", perm: "/Class/Modify", action: "/Admin/Class/Restore" }
+                { type: "restore", perm: "/Template/Modify", action: "/Admin/Template/Restore" }
             ];
         }
         $.baseConfig.btns = btns;
@@ -27,24 +27,16 @@
     $("#tbList").tbInit();
     $("#tbList").DataTable({
         "ajax": {
-            url: "/Admin/Class/List",
+            url: "/Admin/Template/List",
             type: "POST",
             dataType: "json"
         },
-        "order": [[6, "desc"]],
+        "order": [[3, "desc"]],
         "columns": [
             { data: "" },
             { data: "" },
             { data: "Name" },
-            { data: "Type" },
-            {
-                data: "SchoolId",
-                render: function(data, type, row) {
-                    return row.SchoolEntity.Name;
-                }
-            },
-            { data: "CreateTime" },
-            { data: "UpdateTime" }
+            { data: "CreateTime" }
         ],
         "columnDefs": [
             {
@@ -62,7 +54,7 @@
                     //创建按钮
                     var html = [];
                     if ($.baseConfig.tab === "list") {
-                        if ($.hasPerm("/Class/Modify")) {
+                        if ($.hasPerm("/Template/Modify")) {
                             html.push("<button type=\"button\" class=\"btn btn-primary btn-xs btnEdit\" data-id=\"" +
                                 row.Id +
                                 "\"><i class=\"fa fa-edit\"></i> 编辑</button>");
@@ -76,7 +68,7 @@
         ]
     }).on("click", ".btnEdit", function () {
         var id = $(this).data("id");
-        $.openWindow("/Admin/Class/Edit?id=" + id, "修改信息");
+        $.openWindow("/Admin/Template/Edit?id=" + id, "修改信息");
 
     });
 
