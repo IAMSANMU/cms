@@ -3,9 +3,6 @@
         rules: {
             Name: {
                 required: true
-            },
-            Type: {
-                required: true
             }
         }
     });

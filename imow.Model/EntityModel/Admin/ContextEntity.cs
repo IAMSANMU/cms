@@ -82,6 +82,12 @@ namespace imow.Model.EntityModel.Admin
         /// </summary>
         public bool IsTop { get; set; }
 
+        public string Keywords { get; set; }
+
+        public string Description { get; set; }
+
+        public string Remark { get; set; }
+
     }
 
     /// <summary>

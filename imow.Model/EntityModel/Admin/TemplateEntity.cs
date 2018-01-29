@@ -23,10 +23,6 @@ namespace imow.Model.EntityModel.Admin
         ///Name
         /// </summary>
         public string Name { get; set; }
-        /// <summary>
-        ///Type
-        /// </summary>
-        public string Type { get; set; }
 
         /// <summary>
         ///Context
@@ -52,6 +48,8 @@ namespace imow.Model.EntityModel.Admin
         ///IsDel
         /// </summary>
         public bool IsDel { get; set; }
+
+        public string Remark { get; set; }
 
     }
 

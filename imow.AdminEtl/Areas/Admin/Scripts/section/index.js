@@ -5,13 +5,13 @@
         if (tabType === "list") {
             btns = [
                 { type: "refresh" },
-                { type: "add", perm: "/Template/Modify", action: "/Admin/Template/Add" },
-                { type: "logicDelete", perm: "/Template/Modify", action: "/Admin/Template/Delete" }
+                { type: "add", perm: "/Section/Modify", action: "/Admin/Section/Add" },
+                { type: "logicDelete", perm: "/Section/Modify", action: "/Admin/Section/Delete" }
             ];
         } else {
             btns = [
                 { type: "refresh" },
-                { type: "restore", perm: "/Template/Modify", action: "/Admin/Template/Restore" }
+                { type: "restore", perm: "/Section/Modify", action: "/Admin/Section/Restore" }
             ];
         }
         $.baseConfig.btns = btns;
@@ -27,15 +27,16 @@
     $("#tbList").tbInit();
     $("#tbList").DataTable({
         "ajax": {
-            url: "/Admin/Template/List",
+            url: "/Admin/Section/List",
             type: "POST",
             dataType: "json"
         },
-        "order": [[3, "desc"]],
+        "order": [[4, "desc"]],
         "columns": [
             { data: "" },
             { data: "" },
             { data: "Name" },
+            { data: "OrderNum" },
             { data: "CreateTime" },
             { data: "Remark" }
         ],
@@ -55,7 +56,7 @@
                     //创建按钮
                     var html = [];
                     if ($.baseConfig.tab === "list") {
-                        if ($.hasPerm("/Template/Modify")) {
+                        if ($.hasPerm("/Section/Modify")) {
                             html.push("<button type=\"button\" class=\"btn btn-primary btn-xs btnEdit\" data-id=\"" +
                                 row.Id +
                                 "\"><i class=\"fa fa-edit\"></i> 编辑</button>");
@@ -69,7 +70,7 @@
         ]
     }).on("click", ".btnEdit", function () {
         var id = $(this).data("id");
-        $.openWindow("/Admin/Template/Edit?id=" + id, "修改信息");
+        $.openWindow("/Admin/Section/Edit?id=" + id, "修改信息");
 
     });
 

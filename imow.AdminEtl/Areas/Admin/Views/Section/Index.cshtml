@@ -1,7 +1,6 @@
-﻿@model  imow.AdminEtl.Areas.Admin.Models.Admin.ClassModel
-@{
+﻿@{
     Layout = "~/Views/Shared/_Main.cshtml";
-    ViewBag.Tabs = new string[] { "模板列表_list", "回收站_recover" };
+    ViewBag.Tabs = new string[] { "栏目列表_list", "回收站_recover" };
 }
 
 @section searchBar
@@ -28,7 +27,8 @@
             <tr>
                 <th><input type="checkbox" class="i-checks checkAll" data-table="tbList" /></th>
                 <th>操作</th>
-                <th>模板</th>
+                <th>栏目</th>
+                <th>排序</th>
                 <th>创建时间</th>
                 <th>说明</th>
             </tr>
@@ -37,5 +37,5 @@
 }
 @section Scripts{
 
-    @Scripts.Render("~/Areas/Admin/Scripts/template/index.js")
+    @Scripts.Render("~/Areas/Admin/Scripts/section/index.js")
 }

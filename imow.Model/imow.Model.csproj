@@ -101,7 +101,7 @@
     <Compile Include="EntityModel\Admin\CompanyStrutsEntity.cs" />
     <Compile Include="EntityModel\Admin\TemplateEntity.cs" />
     <Compile Include="EntityModel\AreaEntity.cs" />
-    <Compile Include="EntityModel\Admin\ArticleEntity.cs" />
+    <Compile Include="EntityModel\Admin\SectionEntity.cs" />
     <Compile Include="EntityModel\Admin\ClassEntity.cs" />
     <Compile Include="EntityModel\Admin\ContextEntity.cs" />
     <Compile Include="EntityModel\Admin\PhotoEntity.cs" />
