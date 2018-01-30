@@ -137,6 +137,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ClassController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContextController.cs" />
     <Compile Include="Areas\Admin\Controllers\SectionController.cs" />
     <Compile Include="Areas\Admin\Controllers\TemplateController.cs" />
     <Compile Include="Areas\Admin\Controllers\UploadController.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Areas\Admin\Controllers\SchoolController.cs" />
     <Compile Include="Areas\Admin\Models\Admin\ClassModel.cs" />
     <Compile Include="Areas\Admin\Models\Admin\CompanyModel.cs" />
+    <Compile Include="Areas\Admin\Models\Admin\ContextModel.cs" />
     <Compile Include="Areas\Admin\Validators\SchoolValidator.cs" />
     <Compile Include="Binder\ListSearchModelModelBinder.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
@@ -168,6 +170,8 @@
     <Content Include="Areas\Admin\Scripts\company\index.js" />
     <Content Include="Areas\Admin\Scripts\class\edit.js" />
     <Content Include="Areas\Admin\Scripts\class\index.js" />
+    <Content Include="Areas\Admin\Scripts\context\edit.js" />
+    <Content Include="Areas\Admin\Scripts\context\index.js" />
     <Content Include="Areas\Admin\Scripts\school\edit.js" />
     <Content Include="Areas\Admin\Scripts\school\index.js" />
     <Content Include="Areas\Admin\Scripts\section\edit.js" />
@@ -389,6 +393,8 @@
     <Content Include="Areas\Admin\Views\Template\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Section\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Section\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Context\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Context\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Inspinia.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Images\a1.jpg" />

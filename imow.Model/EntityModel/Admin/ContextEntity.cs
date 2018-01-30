@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DapperExtensions.Mapper;
+using Imow.Framework.Tool;
+using Newtonsoft.Json;
 
 namespace imow.Model.EntityModel.Admin
 {
@@ -22,15 +24,22 @@ namespace imow.Model.EntityModel.Admin
         /// </summary>
         public string Title { get; set; }
 
-        /// <summary>
-        ///Context
-        /// </summary>
+        [JsonIgnore]
         public string Context { get; set; }
+        [JsonIgnore]
+        public string DecodeContext
+        {
+            get
+            {
+                return string.IsNullOrEmpty(Context) ? "" : StringHelper.UnBase64(Context);
+            }
+            set { Context = value; }
+        }
 
         /// <summary>
-        ///ArticleId
+        ///SectionId
         /// </summary>
-        public int ArticleId { get; set; }
+        public int SectionId { get; set; }
 
         /// <summary>
         ///Author
@@ -88,6 +97,8 @@ namespace imow.Model.EntityModel.Admin
 
         public string Remark { get; set; }
 
+        public bool IsShow { get; set; }
+
     }
 
     /// <summary>
@@ -100,6 +111,7 @@ namespace imow.Model.EntityModel.Admin
         {
             base.Table("ecContext");
             //Map(f => f.UserID).Ignore();//设置忽略
+            Map(f => f.DecodeContext).Ignore();//设置忽略
             Map(f => f.Id).Key(KeyType.Identity);//设置主键  (如果主键名称不包含字母“ID”，请设置)      
             AutoMap();
         }
