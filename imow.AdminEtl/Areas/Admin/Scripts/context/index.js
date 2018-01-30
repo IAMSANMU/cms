@@ -31,30 +31,18 @@
             type: "POST",
             dataType: "json"
         },
-        "order": [[4, "desc"]],
+        "order": [[7, "desc"]],
         "columns": [
             { data: "" },
             { data: "" },
-            { data: "Section.Name" },
-            { data: "Title" },
+            { data: "SectionEntity.Name" },
+            { data: "Title" ,render: function(data) {
+                return "<a href='' target='_blank'/>"+data+"/a>";
+            } },
             {
                 data: "IsShow",
                 render: function (data) {
                     return data ? "显示" : "隐藏";
-                }
-            },
-            {
-                data: "Status",
-                render: function (data) {
-                    var msg = "";
-                    if (data === 1) {
-                        msg = "未审核";
-                    } else if (data ===2) {
-                        msg = "审核通过";
-                    } else if (data === 3) {
-                        msg = "审核不通过";
-                    }
-                    return msg;
                 }
             },
             {
@@ -63,8 +51,9 @@
                     return data ? "置顶" : "";
                 }
             },
-            { data: "CreateTime" },
-            { data: "Author" }
+            { data: "PushTime" },
+            { data: "Author" },
+            { data:"Remark" }
         ],
         "columnDefs": [
             {

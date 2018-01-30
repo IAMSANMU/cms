@@ -76,6 +76,9 @@ $.extend({
     }, alertError: function (content, callback) {
         $.alert(content, callback, "error");
     },
+    close:function() {
+        swal.close();
+    },
     confirm: function (content, okFn, cancelFn) {
         swal({
             title: "",

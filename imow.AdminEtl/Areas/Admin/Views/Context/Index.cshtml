@@ -1,4 +1,5 @@
-﻿@{
+﻿@model imow.AdminEtl.Areas.Admin.Models.Admin.ContextModel
+@{
     Layout = "~/Views/Shared/_Main.cshtml";
     ViewBag.Tabs = new string[] { "文章列表_list", "回收站_recover" };
 }
@@ -7,8 +8,14 @@
 {
     <form role="form" class="form-inline">
         <div class="form-group">
-            <input type="text" name="Name" value="" placeholder="名称" class="form-control" searchcolum="Name" searchoperator="6">
-            <input type="hidden" name="IsDel" value="@(ViewBag.tab.ToString()=="list"?0:1)" placeholder="" class="form-control" searchcolum="IsDel" searchoperator="1" startSearch="true">
+            <label class="control-label">栏目</label>
+            <select searchcolum="SectionId" searchoperator="1" class="form-control">
+                <option value="">全部</option>
+                @foreach (var item in Model.SectionList)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
         </div>
         <div class="form-group">
             <label class="control-label">显示状态</label>
@@ -19,13 +26,9 @@
             </select>
         </div>
         <div class="form-group">
-            <label class="control-label">审核状态</label>
-            <select searchcolum="Status" searchoperator="1" class="form-control">
-                <option value="">全部</option>
-                <option value="1">草稿</option>
-                <option value="2">审核通过</option>
-                <option value="3">审核不通过</option>
-            </select>
+            <label class="control-label">标题</label>
+            <input type="text" name="Name" value="" placeholder="标题" class="form-control" searchcolum="Name" searchoperator="6">
+            <input type="hidden" name="IsDel" value="@(ViewBag.tab.ToString() == "list" ? 0 : 1)" placeholder="" class="form-control" searchcolum="IsDel" searchoperator="1" startSearch="true">
         </div>
 
         <div class="form-group">
@@ -48,10 +51,10 @@
                 <th>栏目</th>
                 <th>标题</th>
                 <th>显示状态</th>
-                <th>审核状态</th>
                 <th>置顶</th>
                 <th>发布时间</th>
                 <th>发布人</th>
+                <th>说明</th>
             </tr>
         </thead>
     </table>

@@ -41,6 +41,14 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="col-sm-4 control-label">主修:</label>
+                                        <div class="col-sm-8">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" name="IsMain" class="i-checks" value="true" @(Model.Entity.IsMain? "checked" : "")>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="col-sm-2 control-label">图片</label>
                                         <div class="col-sm-8">
                                             <a href="@Model.Entity.Photo" target="_blank"><img src="@Model.Entity.Photo" class="headPhoto" /> </a> 

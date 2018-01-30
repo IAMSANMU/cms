@@ -18,7 +18,7 @@
             return true;
         }
     });
-
-        $('.summernote').Textarea({ type: "class" });
+    $(".i-checks").ickbox();
+    $('.summernote').Textarea({ type: "class" });
     $(".fileinput-button").imgUpload("/Admin/Upload");
 });

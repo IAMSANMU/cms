@@ -1,51 +1,169 @@
-﻿@model imow.Model.EntityModel.Admin.SectionEntity
+﻿@model imow.AdminEtl.Areas.Admin.Models.Admin.ContextModel
 @{
     Layout = "~/Views/Shared/_EmptyLayout.cshtml";
 }
 <div class="wrapper wrapper-content animated fadeInRight ecommerce">
     <div class="row">
-
-        <div class="col-sm-12 ibox">
-            <div class="ibox-content">
-                <form role="form" id="saveForm" class="form-horizontal" method="post" action="@Url.Action("Modify", "Section")">
-                    <div class="form-group">
-                        <input type="hidden" name="Id" value="@Model.Id" />
-                        <label class="col-sm-2 control-label">栏目名称:</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="Name" value="@Model.Name" class="form-control" />
+        <form role="form" id="saveForm" class="form-horizontal" method="post" action="@Url.Action("Modify","Context")">
+            <div class="col-sm-12">
+                <div class="tabs-container">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#tab-1">基本信息</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-2" id="changeClass">内容</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane active">
+                            <div class="panel-body">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="hidden" name="Id" value="@Model.ContextEntity.Id" />
+                                        <label class="col-sm-4 control-label">栏目:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" Name="SectionId">
+                                                @foreach (var item in Model.SectionList)
+                                                {
+                                                    <option value="@item.Id" @(item.Id==Model.ContextEntity.SectionId?"selected":"") >@item.Name</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">seo_keywords:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" name="Keywords" class="form-control" value="@Model.ContextEntity.Keywords"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">seo_description:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" name="Description" class="form-control" value="@Model.ContextEntity.Description"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">点击数:</label>
+                                        <div class="col-sm-8">
+                                            <input type="Number" name="ViewCount" class="form-control" value="@Model.ContextEntity.ViewCount" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">置顶:</label>
+                                        <div class="col-sm-8">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" name="IsTop" class="i-checks" value="true" @(Model.ContextEntity.IsTop? "checked" : "")>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">显示:</label>
+                                        <div class="col-sm-8">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" name="IsShow" class="i-checks" value="true" @(Model.ContextEntity.IsShow ? "checked" : "")>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">说明:</label>
+                                        <div class="col-sm-8">
+                                            <textarea class="form-control" name="Remark"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">标题:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" name="Title" class="form-control" value="@Model.ContextEntity.Title"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Tags:<small class="text-danger block">空格分开</small></label>
+                                        <div class="col-sm-8">
+                                            <input type="text" name="Tags" class="form-control" value="@Model.ContextEntity.Tags" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">发布人:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" name="Author" class="form-control" value="@Model.ContextEntity.Author" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">发布时间:</label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group date ">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input type="text" name="PushTime" data-provide="datepicker" class="form-control" value="@Model.ContextEntity.PushTime">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">类型:</label>
+                                        <div class="col-sm-8">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="Type" class="i-radios" value="0"  @(Model.ContextEntity.Type==0?"checked":"")>内容
+                                            </label>
+                                            <label class="radio-inline" title="">
+                                                <input type="radio" name="Type" class="i-radios" value="1"  @(Model.ContextEntity.Type==1?"checked":"")>链接
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group link @(Model.ContextEntity.Type==0?"hidden":"")">
+                                        <label class="col-sm-3 control-label">跳转地址:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" Name="Link" value="@Model.ContextEntity.Link">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-2" class="tab-pane ">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">模板:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" id="template">
+                                                <option value="" data-info="">---选择模板--</option>
+                                                @foreach (var item in Model.TemplateList)
+                                                {
+                                                    <option value="@item.Id" data-info="@item.DecodeContext" >@item.Name</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                                <textarea name="DecodeContext" id="info" class="form-control summernote">@Model.ContextEntity.DecodeContext</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">排序:</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="OrderNum" value="@Model.OrderNum" class="form-control" />
-                        </div>
+                </div>
+                <div class="ibox">
+                    <div class="ibox-content text-center">
+                        <button type="button" class="btn btn-w-m btn-primary ladda-button" id="btnSave" data-style="expand-right">保存</button>
                     </div>
-                    
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">说明:</label>
-                        <div class="col-sm-8">
-                            <textarea name="Remark" class="form-control">@Model.Remark</textarea>
-                        </div>
-                    </div>
-                    <div class="form-group text-center">
-                        <div class="col-sm-12">
-                            <button type="button" class="btn btn-w-m btn-primary ladda-button" id="btnSave" data-style="expand-right">保存</button>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 
 
+
 @section Styles {
+    @Styles.Render("~/plugins/datepickerStyles")
+    @Styles.Render("~/plugins/summernoteStyles")
 
 }
 
 
 @section Scripts {
+    @Scripts.Render("~/plugins/datepicker")
     @Scripts.Render("~/plugins/validate")
-    @Scripts.Render("~/Areas/Admin/Scripts/section/edit.js")
+    @Scripts.Render("~/plugins/summernote")
+    @Scripts.Render("~/Areas/Admin/Scripts/context/edit.js")
 }

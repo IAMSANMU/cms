@@ -38,6 +38,10 @@ namespace imow.Model.EntityModel.Admin
         ///IsDel
         /// </summary>
         public bool IsDel { get; set; }
+        /// <summary>
+        /// 主修/辅修
+        /// </summary>
+        public bool IsMain { get; set; }
 
         /// <summary>
         ///CreateTime

@@ -57,6 +57,10 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
         public ActionResult Add()
         {
             ContextEntity entity = new ContextEntity();
+            entity.PushTime = DateTime.Now;
+            entity.Author = GetAdminUser().RealName;
+            entity.IsShow = true;
+
             IEnumerable<SectionEntity> sectionList = _sectionService.GetAll();
 
             //获取模板列表
@@ -85,6 +89,8 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
                 {
                     model.CreateTime = DateTime.Now;
                     model.IsDel = false;
+                    model.AdminId = GetAdminUser().Id;
+                    model.Status = 2;
                     _service.Add(model);
                     jsonResult.Success = true;
                 }
@@ -115,7 +121,19 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
             {
                 return InvokeHttp404();
             }
-            return View(entity);
+
+            IEnumerable<SectionEntity> sectionList = _sectionService.GetAll();
+
+            //获取模板列表
+            IEnumerable<TemplateEntity> templateList = _templateService.GetAll();
+
+            ContextModel model = new ContextModel
+            {
+                SectionList = sectionList,
+                ContextEntity = entity,
+                TemplateList = templateList
+            };
+            return View(model);
         }
 
         private ActionResult Edit(ContextEntity model)
@@ -138,7 +156,7 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
                     }
                     else
                     {
-                        MapperHelper.Copy(model, db, ignore: new[] { "createtime", "id", "isdel", "decodecontext" });
+                        MapperHelper.Copy(model, db, ignore: new[] { "createtime", "id", "isdel","status","adminid", "decodecontext" });
                         _service.Update(db);
                         jsonResult.Success = true;
                     }

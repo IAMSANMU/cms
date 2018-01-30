@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DapperExtensions;
 using imow.IRepository;
+using imow.IRepository.Admin;
 using imow.Model.EntityModel;
 using imow.Model.EntityModel.Admin;
 
@@ -12,9 +13,9 @@ namespace imow.Services.BussinessService.Admin
 {
     public class ContextService : IBaseService
     {
-        private readonly IBaseRepository<ContextEntity> _dao;
+        private readonly IContextRepository _dao;
 
-        public ContextService(IBaseRepository<ContextEntity> dao)
+        public ContextService(IContextRepository dao)
         {
             _dao = dao;
         }
@@ -23,13 +24,19 @@ namespace imow.Services.BussinessService.Admin
         public void Add(ContextEntity entity)
         {
             _dao.Add(entity);
+            BuildHtml(entity);
         }
 
         public void Update(ContextEntity entity)
         {
             _dao.Update(entity);
+            BuildHtml(entity);
         }
 
+        private void BuildHtml(ContextEntity entity)
+        {
+            //TODO 生成静态页
+        }
 
         public IEnumerable<ContextEntity> GetList(int[] ids)
         {

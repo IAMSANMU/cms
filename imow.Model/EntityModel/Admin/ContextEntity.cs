@@ -51,8 +51,10 @@ namespace imow.Model.EntityModel.Admin
         /// </summary>
         public DateTime CreateTime { get; set; }
 
+        public DateTime PushTime { get; set; }
+
         /// <summary>
-        ///Status
+        ///审核状态 1/2/3=未审核/审核通过/审核不通过
         /// </summary>
         public int Status { get; set; }
 
@@ -77,7 +79,7 @@ namespace imow.Model.EntityModel.Admin
         public string Link { get; set; }
 
         /// <summary>
-        ///1/2=内容/跳转
+        ///0/1=内容/跳转
         /// </summary>
         public int Type { get; set; }
 
@@ -99,6 +101,7 @@ namespace imow.Model.EntityModel.Admin
 
         public bool IsShow { get; set; }
 
+        public SectionEntity SectionEntity { get; set; }
     }
 
     /// <summary>
@@ -111,8 +114,10 @@ namespace imow.Model.EntityModel.Admin
         {
             base.Table("ecContext");
             //Map(f => f.UserID).Ignore();//设置忽略
+            Map(f => f.SectionEntity).Ignore();//
             Map(f => f.DecodeContext).Ignore();//设置忽略
-            Map(f => f.Id).Key(KeyType.Identity);//设置主键  (如果主键名称不包含字母“ID”，请设置)      
+            Map(f => f.Id).Key(KeyType.Identity);//设置主键  (如果主键名称不包含字母“ID”，请设置)     
+            Map(f => f.SectionId).ForignKey<SectionEntity>(s => s.Id); 
             AutoMap();
         }
     }

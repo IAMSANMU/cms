@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\IContextRepository.cs" />
     <Compile Include="Admin\IClassRepository.cs" />
     <Compile Include="Admin\ICompanyStrutsRepository.cs" />
     <Compile Include="Admin\IPermissionRepository.cs" />

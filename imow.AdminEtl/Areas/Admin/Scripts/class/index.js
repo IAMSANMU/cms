@@ -31,7 +31,7 @@
             type: "POST",
             dataType: "json"
         },
-        "order": [[6, "desc"]],
+        "order": [[7, "desc"]],
         "columns": [
             { data: "" },
             { data: "" },
@@ -41,6 +41,12 @@
                 data: "SchoolId",
                 render: function(data, type, row) {
                     return row.SchoolEntity.Name;
+                }
+            },
+            {
+                data: "IsMain",
+                render: function (data, type, row) {
+                    return data ? "主修" : "辅修";
                 }
             },
             { data: "CreateTime" },
