@@ -79,6 +79,7 @@
     <Compile Include="Admin\IContextRepository.cs" />
     <Compile Include="Admin\IClassRepository.cs" />
     <Compile Include="Admin\ICompanyStrutsRepository.cs" />
+    <Compile Include="Admin\IOrderRepository.cs" />
     <Compile Include="Admin\IPermissionRepository.cs" />
     <Compile Include="Admin\IAdminRepository.cs" />
     <Compile Include="IBaseRepository.cs" />

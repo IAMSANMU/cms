@@ -1,13 +1,11 @@
-﻿$(function () {
+﻿$(function() {
     $("#saveForm").validate({
         rules: {
-            Tel: {
-                required: true
-            },
-            Number: {
+            Link: {
                 required: true
             }
         }
     });
     $("#btnSave").bindSubmit();
+    $(".fileinput-button").imgUpload("/Admin/Upload");
 });

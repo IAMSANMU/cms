@@ -77,10 +77,12 @@
   <ItemGroup>
     <Compile Include="BussinessService\Admin\CompanyStrutsService.cs" />
     <Compile Include="BussinessService\Admin\ContextService.cs" />
+    <Compile Include="BussinessService\Admin\OrderService.cs" />
     <Compile Include="BussinessService\Admin\PermissionService.cs" />
     <Compile Include="BussinessService\Admin\AdminUserService.cs" />
     <Compile Include="BussinessService\Admin\AdminTicketService.cs" />
     <Compile Include="BussinessService\Admin\ClassService.cs" />
+    <Compile Include="BussinessService\Admin\LoopService.cs" />
     <Compile Include="BussinessService\Admin\StaffService.cs" />
     <Compile Include="BussinessService\Admin\SchoolService.cs" />
     <Compile Include="BussinessService\Admin\SectionService.cs" />

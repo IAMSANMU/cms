@@ -23,28 +23,8 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
             try
             {
                 string rootPath = "";
-                ImowConfig imowConfig = ImowEngineContext.Current.ResolveConfig<ImowConfig>();
                 string date = DateTime.Now.ToString("yyyyMMdd");
-                if (type == "school")
-                {
-                    rootPath = imowConfig.SchoolUpload;
-                }
-                else if (type == "class")
-                {
-                    rootPath = imowConfig.ClassUpload;
-                }
-                else if (type == "template")
-                {
-                    rootPath = imowConfig.TemplateUpload;
-                }
-                else if (type == "context")
-                {
-                    rootPath = imowConfig.ContextUpload;
-                }
-                else if (type == "head")
-                {
-                    rootPath = imowConfig.HeadUpload;
-                }
+                rootPath = "/Upload/" + type+"/";
                 rootPath += date + "/";
                 string path = Server.MapPath(rootPath);
                 List<string> datas = new List<string>();

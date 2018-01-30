@@ -97,17 +97,6 @@ namespace imow.Core.config
 
 
 
-        /// <summary>
-        /// 图片上传路径
-        /// </summary>
-        public string SchoolUpload { get; set; }
-        public string HeadUpload { get; set; }
-
-        public string ClassUpload { get; set; }
-
-        public string ContextUpload { get; set; }
-
-        public string TemplateUpload { get; set; }
 
         /// <summary>
         /// 图片地址
