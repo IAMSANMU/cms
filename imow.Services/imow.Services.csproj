@@ -83,6 +83,7 @@
     <Compile Include="BussinessService\Admin\AdminTicketService.cs" />
     <Compile Include="BussinessService\Admin\ClassService.cs" />
     <Compile Include="BussinessService\Admin\LoopService.cs" />
+    <Compile Include="BussinessService\Admin\PhotoService.cs" />
     <Compile Include="BussinessService\Admin\StaffService.cs" />
     <Compile Include="BussinessService\Admin\SchoolService.cs" />
     <Compile Include="BussinessService\Admin\SectionService.cs" />

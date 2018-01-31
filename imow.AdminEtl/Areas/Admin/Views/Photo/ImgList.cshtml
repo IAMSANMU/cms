@@ -1,0 +1,72 @@
+﻿@model imow.AdminEtl.Areas.Admin.Models.Admin.PhotoModel
+@{
+    Layout = "~/Views/Shared/_Main.cshtml";
+    ViewBag.Tabs = new string[] { "相册列表_list", "回收站_recover" };
+    int i = 0;
+}
+
+@section searchBar
+{
+    <input type="hidden" id="photoId" value="@Model.PhotoEntity.Id"/>
+}
+
+@section toolbar{
+<div class="ibox-content" id="tbBars"></div>
+}
+
+@section table{
+
+    
+    
+    <div id="myCarousel" class="carousel slide">
+        <!-- 轮播（Carousel）指标 -->
+        <div class="carousel-inner">
+        @foreach (var item in Model.ImgList)
+        {
+            i++;
+            <div class="item @(i==1?"active":"")">
+                <div class="thumbnail">
+                    <img src="@item.Url" alt="@item.Name">
+                    <div class="carousel text-center">
+                        <h3>@item.Name</h3>
+                        <p>@item.Info</p>
+                        <p>
+                            <button class="btn btnEdit btn-primary" data-id="@item.Id">
+                                编辑
+                            </button>
+                            <button class="btn btn-danger btnDelete" data-id="@item.Id">
+                                删除
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+        </div>
+        <!-- 轮播（Carousel）导航 -->
+        <a data-slide="prev" href="#myCarousel" class="left carousel-control">
+            <span class="icon-prev"></span>
+        </a>
+        <a data-slide="next" href="#myCarousel" class="right carousel-control">
+            <span class="icon-next"></span>
+        </a>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+}
+@section Scripts{
+
+    @Scripts.Render("~/Areas/Admin/Scripts/photo/imgIndex.js")
+}

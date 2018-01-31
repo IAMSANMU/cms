@@ -140,6 +140,7 @@
     <Compile Include="Areas\Admin\Controllers\ContextController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoopController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PhotoController.cs" />
     <Compile Include="Areas\Admin\Controllers\SectionController.cs" />
     <Compile Include="Areas\Admin\Controllers\TemplateController.cs" />
     <Compile Include="Areas\Admin\Controllers\UploadController.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="Areas\Admin\Models\Admin\ClassModel.cs" />
     <Compile Include="Areas\Admin\Models\Admin\CompanyModel.cs" />
     <Compile Include="Areas\Admin\Models\Admin\ContextModel.cs" />
+    <Compile Include="Areas\Admin\Models\Admin\PhotoModel.cs" />
     <Compile Include="Areas\Admin\Validators\SchoolValidator.cs" />
     <Compile Include="Binder\ListSearchModelModelBinder.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
@@ -177,6 +179,10 @@
     <Content Include="Areas\Admin\Scripts\loop\edit.js" />
     <Content Include="Areas\Admin\Scripts\loop\index.js" />
     <Content Include="Areas\Admin\Scripts\order\index.js" />
+    <Content Include="Areas\Admin\Scripts\photo\imgEdit.js" />
+    <Content Include="Areas\Admin\Scripts\photo\edit.js" />
+    <Content Include="Areas\Admin\Scripts\photo\imgIndex.js" />
+    <Content Include="Areas\Admin\Scripts\photo\index.js" />
     <Content Include="Areas\Admin\Scripts\school\edit.js" />
     <Content Include="Areas\Admin\Scripts\school\index.js" />
     <Content Include="Areas\Admin\Scripts\section\edit.js" />
@@ -404,6 +410,11 @@
     <Content Include="Areas\Admin\Views\Loop\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Order\View.cshtml" />
+    <Content Include="Areas\Admin\Views\Photo\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Photo\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Photo\ImgList.cshtml" />
+    <Content Include="Areas\Admin\Views\Photo\AddImg.cshtml" />
+    <Content Include="Areas\Admin\Views\Photo\EditImg.cshtml" />
     <None Include="Properties\PublishProfiles\Inspinia.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Images\a1.jpg" />

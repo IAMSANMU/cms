@@ -38,6 +38,11 @@ namespace imow.Model.EntityModel.Admin
         public string Info { get; set; }
 
         /// <summary>
+        ///Title
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
         ///IsDel
         /// </summary>
         public bool IsDel { get; set; }

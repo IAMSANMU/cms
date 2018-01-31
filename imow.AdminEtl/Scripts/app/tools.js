@@ -326,7 +326,10 @@ $.fn.loadTree = function (url, selectChild) {
 }
 
 
-$.fn.imgUpload = function (action,options, okFn, delFn) {
+$.fn.imgUpload = function (action, options, okFn, delFn) {
+    if ($(this).length === 0) {
+        return false;
+    }
     okFn = okFn || $.okFn;
     delFn = delFn || $.delFn;
 

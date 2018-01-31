@@ -21,6 +21,11 @@ namespace imow.Model.EntityModel.Admin
         ///Name
         /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        ///Title
+        /// </summary>
+        public string Title { get; set; }
+
 
         /// <summary>
         ///Info
@@ -36,6 +41,8 @@ namespace imow.Model.EntityModel.Admin
         ///CreateTime
         /// </summary>
         public DateTime CreateTime { get; set; }
+
+        public string Img { get; set; }
 
     }
 

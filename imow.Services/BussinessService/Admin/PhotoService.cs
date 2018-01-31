@@ -1,0 +1,104 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using DapperExtensions;
+using imow.IRepository;
+using imow.Model.EntityModel.Admin;
+using Imow.Framework.Db;
+
+namespace imow.Services.BussinessService.Admin
+{
+    public class PhotoService : IBaseService
+    {
+        private readonly IBaseRepository<PhotoEntity> _dao;
+        private readonly IBaseRepository<PhotoImgEntity> _imgDao;
+
+        public PhotoService(IBaseRepository<PhotoEntity> dao, IBaseRepository<PhotoImgEntity> imgDao)
+        {
+            _dao = dao;
+            _imgDao = imgDao;
+        }
+
+        public IEnumerable<PhotoEntity> GetAll(bool isDel)
+        {
+            List<IPredicate> list =
+                new List<IPredicate> { Predicates.Field<PhotoEntity>(f => f.IsDel, Operator.Eq, isDel) };
+
+            var group = Predicates.Group(GroupOperator.And, list.ToArray());
+
+            return _dao.GetList(group).OrderByDescending(f => f.CreateTime);
+        }
+
+        public PhotoEntity Get(int id)
+        {
+            return _dao.Get(id.ToString());
+        }
+
+        public void Add(PhotoEntity entity)
+        {
+            _dao.Add(entity);
+        }
+        public void Update(PhotoEntity entity)
+        {
+            _dao.Update(entity);
+        }
+
+        public void Delete(int id)
+        {
+            PhotoEntity photo = _dao.Get(id.ToString());
+            photo.IsDel = true;
+            _dao.Update(photo);
+        }
+
+        public void Restore(int id)
+        {
+            PhotoEntity photo = _dao.Get(id.ToString());
+            photo.IsDel = false;
+            _dao.Update(photo);
+        }
+
+
+        public IEnumerable<PhotoImgEntity> GetImgAll(int photoId)
+        {
+            List<IPredicate> list =
+                new List<IPredicate> {
+                    Predicates.Field<PhotoImgEntity>(f => f.IsDel, Operator.Eq, false),
+                    Predicates.Field<PhotoImgEntity>(f => f.PhotoId, Operator.Eq, photoId) 
+                };
+
+            var group = Predicates.Group(GroupOperator.And, list.ToArray());
+
+            return _imgDao.GetList(group).OrderByDescending(f => f.CreateTime);
+        }
+
+        public void AddImg(PhotoImgEntity entity)
+        {
+            PhotoEntity photo = _dao.Get(entity.PhotoId.ToString());
+            photo.Img = entity.Url;
+            using (TransactionScope scope = new TransactionScope())
+            {
+                _imgDao.Add(entity);
+                _dao.Update(photo);
+                scope.Complete();
+            }
+        }
+        public void UpdateImg(PhotoImgEntity entity)
+        {
+            _imgDao.Update(entity);
+        }
+        public void DeleteImg(int id)
+        {
+            PhotoImgEntity img = _imgDao.Get(id.ToString());
+            img.IsDel = true;
+            _imgDao.Update(img);
+        }
+
+        public PhotoImgEntity GetImg(int id)
+        {
+            return _imgDao.Get(id.ToString());
+        }
+
+    }
+}
