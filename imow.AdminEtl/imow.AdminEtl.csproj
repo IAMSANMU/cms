@@ -127,7 +127,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Upload\" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +157,7 @@
     <Compile Include="Areas\Admin\Controllers\AreaController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -166,6 +166,7 @@
     <Compile Include="Areas\Admin\Models\Admin\AdminUserModel.cs" />
     <Compile Include="Areas\Admin\Models\Admin\HomeModel.cs" />
     <Compile Include="Areas\Admin\Models\Admin\SaveUserModel.cs" />
+    <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Models\ListSearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -311,6 +312,7 @@
     <Content Include="Content\plugins\switchery\switchery.css" />
     <Content Include="Content\plugins\toastr\toastr.min.css" />
     <Content Include="Content\plugins\touchspin\jquery.bootstrap-touchspin.min.css" />
+    <Content Include="Content\front\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\font-awesome\css\font-awesome.css" />
     <Content Include="fonts\font-awesome\css\font-awesome.min.css" />
@@ -370,6 +372,30 @@
     <Content Include="Content\plugins\slick\fonts\slick.woff" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Global.asax" />
+    <Content Include="Images\front\1.png" />
+    <Content Include="Images\front\2.png" />
+    <Content Include="Images\front\3.png" />
+    <Content Include="Images\front\4.png" />
+    <Content Include="Images\front\arr.png" />
+    <Content Include="Images\front\arrow.png" />
+    <Content Include="Images\front\back.jpg" />
+    <Content Include="Images\front\banner.jpg" />
+    <Content Include="Images\front\f1.jpg" />
+    <Content Include="Images\front\g1.jpg" />
+    <Content Include="Images\front\g2.jpg" />
+    <Content Include="Images\front\g3.jpg" />
+    <Content Include="Images\front\g4.jpg" />
+    <Content Include="Images\front\g5.jpg" />
+    <Content Include="Images\front\g6.jpg" />
+    <Content Include="Images\front\icons.svg" />
+    <Content Include="Images\front\img-sp.png" />
+    <Content Include="Images\front\logo.jpg" />
+    <Content Include="Images\front\pic1.jpg" />
+    <Content Include="Images\front\pic2.jpg" />
+    <Content Include="Images\front\pic3.jpg" />
+    <Content Include="Images\front\pic4.jpg" />
+    <Content Include="Images\front\quote.png" />
+    <Content Include="Images\front\search.png" />
     <Content Include="locales\en.json" />
     <Content Include="locales\es.json" />
     <Content Include="App_Data\Cache.config" />
@@ -1286,6 +1312,8 @@
     <Content Include="Scripts\app\tools.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\front\easing.js" />
+    <Content Include="Scripts\front\move-top.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery.cookie.js" />
@@ -1752,6 +1780,10 @@
     <Content Include="Scripts\plugins\topojson\LICENSE" />
     <Content Include="Scripts\plugins\bootstrap-chinese-region\sql_areas.json" />
     <Content Include="Views\Shared\_SimpleLayout.cshtml" />
+    <Content Include="Views\Shared\Front\_FLayout.cshtml" />
+    <Content Include="Views\Shared\Front\_FFooter.cshtml" />
+    <Content Include="Views\Shared\Front\_FHeader.cshtml" />
+    <Content Include="Views\Index\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

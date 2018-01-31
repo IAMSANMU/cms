@@ -13,7 +13,7 @@ namespace imow.AdminEtl
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}",
-                defaults: new { controller = "Login", action = "Index"},
+                defaults: new { controller = "Index", action = "Index"},
                 namespaces:new string[] { "imow.AdminEtl.Controllers"}
             );
         }

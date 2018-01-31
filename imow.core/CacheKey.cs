@@ -30,9 +30,12 @@
         public static readonly string CityAreaCacheKey = "Area-CityArea";
         public static readonly string AreaStreeCacheKey = "Area-AreaStree";
 
-        public static readonly string StationExpressKey = "station-{0}";
+        public static readonly string IndexLoopCacheKey = "Index-Loop";
+        public static readonly string IndexSchoolCacheKey = "Index-School";
+        public static readonly string IndexClassCacheKey = "Index-Class";
+        public static readonly string IndexTeacherCacheKey = "Index-Teacher";
 
-        public static readonly string SystemConfigKey = "systemConfig";
+
 
 
     }

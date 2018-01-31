@@ -15,6 +15,17 @@ namespace imow.AdminEtl
                 "~/Scripts/jquery-2.1.1.min.js", "~/Areas/H5/Scripts/fastclick.js","~/Areas/H5/Scripts/tools.js", "~/Scripts/plugins/iCheck/icheck.min.js"));
 
 
+            bundles.Add(new StyleBundle("~/web/css").Include(
+                "~/Content/bootstrap.min.css",
+                "~/Content/front/style.css",
+                "~/Content/plugins/sweetalert/sweetalert.css"));
+            bundles.Add(new ScriptBundle("~/web/js").Include(
+                "~/Scripts/jquery-2.1.1.min.js", "~/Scripts/front/easing.js", "~/Scripts/front/move-top.js"));
+
+
+
+
+
             // CSS style (bootstrap/inspinia)
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
