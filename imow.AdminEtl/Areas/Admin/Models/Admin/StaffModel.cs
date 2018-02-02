@@ -6,9 +6,9 @@ using imow.Model.EntityModel.Admin;
 
 namespace imow.AdminEtl.Areas.Admin.Models.Admin
 {
-    public class StaffModel
+    public class ClassModel
     {
         public IEnumerable<SchoolEntity> SchoolList { get; set; }
-        public StaffEntity Entity { get; set; }
+        public ClassEntity Entity { get; set; }
     }
 }

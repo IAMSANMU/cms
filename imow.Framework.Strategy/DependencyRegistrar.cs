@@ -51,6 +51,7 @@ namespace imow.Framework.Strategy
             builder.RegisterType<ClassRepository>().As<IClassRepository>().InstancePerLifetimeScope();
             builder.RegisterType<ContextRepository>().As<IContextRepository>().InstancePerLifetimeScope();
             builder.RegisterType<OrderRepository>().As<IOrderRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<StaffRepository>().As<IStaffRepository>().InstancePerLifetimeScope();
 
         }
 

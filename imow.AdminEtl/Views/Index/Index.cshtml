@@ -2,27 +2,27 @@
 @{
     Layout = "~/Views/Shared/Front/_FLayout.cshtml";
 }
-    <div class="carousel slide" id="loop">
-        <ol class="carousel-indicators">
-            @foreach (var item in Model.LoopList)
+<div class="carousel slide" id="loop">
+    <ol class="carousel-indicators">
+        @foreach (var item in Model.LoopList)
             {
                 int index = Model.LoopList.IndexOf(item);
-                <li data-slide-to="@index" data-target="#loop" class="@(index==0?"active":"")"></li>
-            }
-        </ol>
-        <div class="carousel-inner">
-            @foreach (var item in Model.LoopList)
+            <li data-slide-to="@index" data-target="#loop" class="@(index==0?"active":"")"></li>
+        }
+    </ol>
+    <div class="carousel-inner">
+        @foreach (var item in Model.LoopList)
             {
                 int index = Model.LoopList.IndexOf(item);
-                <div class="item @(index==0?"active":"")">
-                    <a href="@item.Link"><img alt="image" class="img-responsive" src="@item.Img"></a>
-                    <div class="carousel-caption">
-                        @item.Title
-                    </div>
+            <div class="item @(index==0?"active":"")">
+                <a href="@item.Link"><img alt="image" class="img-responsive" src="@item.Img"></a>
+                <div class="carousel-caption">
+                    @item.Title
                 </div>
-            }
-        </div>
+            </div>
+        }
     </div>
+</div>
 
 
 <!-- //banner -->
@@ -31,132 +31,23 @@
     <div class="container">
         <h2 class="tittle">课程列表</h2>
         <div class="bottom-grids">
-            
-            <div class="carousel slide" id="classLoop">
-                <div class="carousel-inner">
-                    <div class="item gallery  active">
-                        <div class="col-sm-3 bottom-grid ">
-                            <div class="bottom-text">
-                                <h3>SuperBaby</h3>
-                                <p>
-                                    在生动活泼和健康有趣的游戏角色和故事环境中培养英语学习兴趣和热情，规范英语发音，在游戏、唱歌、跳舞中发展孩子的语言智能。
-                                </p>
-                            </div>
-                            <div class="bottom-spa">
-                                <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 bottom-grid ">
-                            <div class="bottom-text">
-                                <h3>OUR SUPPORT</h3>
-                                <p>
-                                    Sed ut perspiciatis unde
-                                    omnis iste natus error sit
-                                    voluptatem accusantium doloremque
-                                    explicabo.
-                                </p>
-                            </div>
-                            <div class="bottom-spa">
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 bottom-grid ">
-                            <div class="bottom-text">
-                                <h3>OUR GUARANTEE</h3>
-                                <p>
-                                    Sed ut perspiciatis unde
-                                    omnis iste natus error sit
-                                    voluptatem accusantium doloremque
-                                    explicabo.
-                                </p>
-                            </div>
-                            <div class="bottom-spa">
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 bottom-grid ">
-                            <div class="bottom-text">
-                                <h3>OUR RELIABILITY</h3>
-                                <p>
-                                    Sed ut perspiciatis unde
-                                    omnis iste natus error sit
-                                    voluptatem accusantium doloremque
-                                    explicabo.
-                                </p>
-                            </div>
-                            <div class="bottom-spa">
-                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                            </div>
-                        </div>
+            @foreach (var item in Model.ClassList)
+            {
+                <div class="col-md-3 bottom-grid ">
+                    <div class="bottom-text">
+                        <h3>@item.Name</h3>
+                        <p>
+                            @item.Remark
+                        </p>
                     </div>
-                    <div class="item gallery ">
-                        <div class="col-sm-3 bottom-grid ">
-                            <div class="bottom-text">
-                                <h3>SuperBaby</h3>
-                                <p>
-                                    在生动活泼和健康有趣的游戏角色和故事环境中培养英语学习兴趣和热情，规范英语发音，在游戏、唱歌、跳舞中发展孩子的语言智能。
-                                </p>
-                            </div>
-                            <div class="bottom-spa">
-                                <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 bottom-grid ">
-                            <div class="bottom-text">
-                                <h3>OUR SUPPORT</h3>
-                                <p>
-                                    Sed ut perspiciatis unde
-                                    omnis iste natus error sit
-                                    voluptatem accusantium doloremque
-                                    explicabo.
-                                </p>
-                            </div>
-                            <div class="bottom-spa">
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 bottom-grid ">
-                            <div class="bottom-text">
-                                <h3>OUR GUARANTEE</h3>
-                                <p>
-                                    Sed ut perspiciatis unde
-                                    omnis iste natus error sit
-                                    voluptatem accusantium doloremque
-                                    explicabo.
-                                </p>
-                            </div>
-                            <div class="bottom-spa">
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 bottom-grid ">
-                            <div class="bottom-text">
-                                <h3>OUR RELIABILITY</h3>
-                                <p>
-                                    Sed ut perspiciatis unde
-                                    omnis iste natus error sit
-                                    voluptatem accusantium doloremque
-                                    explicabo.
-                                </p>
-                            </div>
-                            <div class="bottom-spa">
-                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                            </div>
-                        </div>
+                    <div class="bottom-spa">
+                        <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
                     </div>
                 </div>
-                
-                <a data-slide="prev" href="#classLoop" class="left carousel-control">
-                    <span class="icon-prev"></span>
-                </a>
-                <a data-slide="next" href="#classLoop" class="right carousel-control">
-                    <span class="icon-next"></span>
-                </a>
-            </div>
-            
-            <div class="clearfix"></div>
+            }
         </div>
-        </div>
+        <div class="clearfix"></div>
+    </div>
 </div>
 <!-- //banner-bottom -->
 <!-- team -->
@@ -164,58 +55,26 @@
     <div class="container">
         <div class="teach-head">
             <h3>教师风采</h3>
-            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate.
+            <p>
+                泰弗尔教育是经国家外专局认证，具有聘请外国专家资质的语言培训机构，每一位外籍教师接受过TEFL(
+                英语作为外语教学资格证书）或者TESOL（外语教学资格证书）证书培训课程培训，并拥有1年以上教授非英语
+                国家儿童英语的经验
             </p>
         </div>
         <div class="team-grids">
-            <div class="col-sm-3 team-grid text-center">
-                <div class="team-img">
-                    <img src="~/Images/front/1.png" alt="" />
-                    <h3>Yuki</h3>
-                    <h4>Co-founder</h4>
-                    <p>
-                        Nam libero tempore, cum soluta nobis
-                        est eligendi optio cumque nihil impedit
-                        quo minus
-                    </p>
+            @foreach (var item in Model.StaffList)
+            {
+                <div class="col-md-3 team-grid text-center">
+                    <div class="team-img">
+                        <img src="@item.Head" alt="" />
+                        <h3>@item.CName</h3>
+                        <h4>@item.EName</h4>
+                        <p>
+                            @item.Title
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-3 team-grid text-center">
-                <div class="team-img">
-                    <img src="~/Images/front/2.png" alt="" />
-                    <h3>PATRICK</h3>
-                    <h4>Co-founder</h4>
-                    <p>
-                        Nam libero tempore, cum soluta nobis
-                        est eligendi optio cumque nihil impedit
-                        quo minus
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-3 team-grid text-center">
-                <div class="team-img">
-                    <img src="~/Images/front/3.png" alt="" />
-                    <h3>THOMPSON</h3>
-                    <h4>Co-founder</h4>
-                    <p>
-                        Nam libero tempore, cum soluta nobis
-                        est eligendi optio cumque nihil impedit
-                        quo minus
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-3 team-grid text-center">
-                <div class="team-img">
-                    <img src="~/Images/front/4.png" alt="" />
-                    <h3>VICTORIA</h3>
-                    <h4>Co-founder</h4>
-                    <p>
-                        Nam libero tempore, cum soluta nobis
-                        est eligendi optio cumque nihil impedit
-                        quo minus
-                    </p>
-                </div>
-            </div>
+            }
             <div class="clearfix"></div>
         </div>
     </div>
@@ -225,66 +84,20 @@
 <div class="facilities">
     <div class="container">
         <h3 class="tittle">校区风采</h3>
-        <div class="view view-seventh">
-            <a href="~/Images/front/g1.jpg" class="b-link-stripe b-animate-go  swipebox" title="Image Title">
-                <img src="~/Images/front/g1.jpg" alt="">
-                <div class="mask">
-                    <h4>TUTELAGE</h4>
-                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-
-                </div>
-            </a>
-        </div>
-        <div class="view view-seventh">
-            <a href="~/Images/front/g2.jpg" class="b-link-stripe b-animate-go  swipebox" title="Image Title">
-                <img src="~/Images/front/g2.jpg" alt="">
-                <div class="mask">
-                    <h4>TUTELAGE</h4>
-                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-
-                </div>
-            </a>
-        </div>
-        <div class="view view-seventh">
-            <a href="~/Images/front/g3.jpg" class="b-link-stripe b-animate-go  swipebox" title="Image Title">
-                <img src="~/Images/front/g3.jpg" alt="">
-                <div class="mask">
-                    <h4>TUTELAGE</h4>
-                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-
-                </div>
-            </a>
-        </div>
-        <div class="view view-seventh">
-            <a href="~/Images/front/g4.jpg" class="b-link-stripe b-animate-go  swipebox" title="Image Title">
-                <img src="~/Images/front/g4.jpg" alt="">
-                <div class="mask">
-                    <h4>TUTELAGE</h4>
-                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-
-                </div>
-            </a>
-        </div>
-        <div class="view view-seventh">
-            <a href="~/Images/front/g5.jpg" class="b-link-stripe b-animate-go  swipebox" title="Image Title">
-                <img src="~/Images/front/g5.jpg" alt="">
-                <div class="mask">
-                    <h4>TUTELAGE</h4>
-                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-
-                </div>
-            </a>
-        </div>
-        <div class="view view-seventh">
-            <a href="~/Images/front/g6.jpg" class="b-link-stripe b-animate-go  swipebox" title="Image Title">
-                <img src="~/Images/front/g6.jpg" alt="">
-                <div class="mask">
-                    <h4>TUTELAGE</h4>
-                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-
-                </div>
-            </a>
-        </div>
+        @foreach (var item in Model.ImgList)
+        {
+            <div class="view view-seventh">
+                <a href="javascript:;" class="b-link-stripe b-animate-go  swipebox" title="Image Title">
+                    <img src="@item.Url" alt="@item.Name">
+                    <div class="mask">
+                        <h4>@item.Name</h4>
+                        <p>
+                            @item.Info
+                        </p>
+                    </div>
+                </a>
+            </div>
+        }
         <div class="clearfix"></div>
     </div>
 </div>
@@ -292,27 +105,18 @@
 <!-- features -->
 <div class="features">
     <div class="container">
-        <h3 class="tittle">FEATURES</h3>
-        <div class="col-sm-5 features-left">
+        <h3 class="tittle">教学理念</h3>
+        <div class="col-md-5 features-left">
             <img src="~/Images/front/f1.jpg" alt="" />
         </div>
-        <div class="col-sm-7 features-right">
-            <h4>SPECIAL CARE ON STUDENTS</h4>
+        <div class="col-md-7 features-right">
+            <h4>教学理念</h4>
+            <p>CUTE可优中小学快乐英语秉持Care关注、Understand理解、Teach教导、Enjoy享受的教学理念。秉持</p>
             <p>
-                Neque porro quisquam est, qui dolorem ipsum
-                quia dolor sit amet, consectetur, adipisci velit,
-                sed quia non numquam eius modi tempora incidunt ut
-                labore et dolore magnam aliquam quaerat voluptatem.
-                Ut enim ad minima veniam, quis nostrum exercitationem
-                ullam corporis suscipit laboriosam, nisi ut aliquid
-                ex ea commodi consequatu.
-            </p>
-            <p>
-                Temporibus autem quibusdam et aut officiis debitis aut rerum
-                necessitatibus saepe eveniet ut et voluptates repudiandae sint et
-                molestiae non recusandae. Itaque earum rerum veniam, quis nostrum exercitationem
-                ullam corporis suscipit laboriosam, nisi ut aliquid
-                ex ea commodi consequatu.
+                Care关注、Understand理解、Teach教导、Enjoy享受的教育理念。我们关注每个孩子的个体差异，理解不同
+                学员的学习诉求，教导孩子在学好英语的同时懂得做人的道理，让每个孩子在我们这里享受到学习和成长的快
+                乐。快乐的童年是健康成长的前提，快乐的孩子才可爱，可优英语为所有的学员创造开心活泼的学习氛围和校
+                园文化。十年树木，百年树人，可优英语陪伴孩子快乐成长.
             </p>
 
         </div>

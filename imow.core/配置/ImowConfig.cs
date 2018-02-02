@@ -94,6 +94,7 @@ namespace imow.Core.config
 
         #endregion
 
+        public int PhotoId { get; set; }
 
 
 

@@ -10,15 +10,7 @@
         }
     });
 
-    $("#btnSave").bindSubmit({
-        before: function() {
-            var html = $('.summernote').summernote("code");
-            html = $.base64.encode(html, "UTF-8");
-            $("#info").val(html);
-            return true;
-        }
-    });
+    $("#btnSave").bindSubmit();
     $(".i-checks").ickbox();
-    $('.summernote').Textarea({ type: "class" });
     $(".fileinput-button").imgUpload("/Admin/Upload");
 });

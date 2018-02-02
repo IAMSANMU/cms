@@ -1,14 +1,14 @@
-﻿@model  imow.AdminEtl.Areas.Admin.Models.Admin.ClassModel
+﻿@model  imow.AdminEtl.Areas.Admin.Models.Admin.StaffModel
 @{
     Layout = "~/Views/Shared/_Main.cshtml";
-    ViewBag.Tabs = new string[] { "校区列表_list", "回收站_recover" };
+    ViewBag.Tabs = new string[] { "员工列表_list", "回收站_recover" };
 }
 
 @section searchBar
 {
     <form role="form" class="form-inline">
         <div class="form-group">
-            <input type="text" name="Name" value="" placeholder="名称" class="form-control" searchcolum="Name" searchoperator="6">
+            <input type="text" name="CName" value="" placeholder="名称" class="form-control" searchcolum="CName" searchoperator="6">
             <input type="hidden" name="IsDel" value="@(ViewBag.tab.ToString()=="list"?0:1)" placeholder="" class="form-control" searchcolum="IsDel" searchoperator="1" startSearch="true">
         </div>
         <div class="form-group">
@@ -28,12 +28,12 @@
             <tr>
                 <th><input type="checkbox" class="i-checks checkAll" data-table="tbList" /></th>
                 <th>操作</th>
-                <th>课程名称</th>
-                <th>目标学员</th>
-                <th>教材</th>
-                <th>教师</th>
-                <th>排序</th>
-                <th>是否主修</th>
+                <th>中文姓名</th>
+                <th>英文姓名</th>
+                <th>电话</th>
+                <th>籍贯</th>
+                <th>校区</th>
+                <th>是否推荐</th>
                 <th>创建时间</th>
             </tr>
         </thead>
@@ -41,5 +41,5 @@
 }
 @section Scripts{
 
-    @Scripts.Render("~/Areas/Admin/Scripts/class/index.js")
+    @Scripts.Render("~/Areas/Admin/Scripts/staff/index.js")
 }

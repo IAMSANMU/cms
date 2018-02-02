@@ -10,7 +10,6 @@
             <div class="tabs-container">
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#tab-1"> 基本资料</a></li>
-                    <li class=""><a data-toggle="tab" href="#tab-2" id="changeClass">课程介绍</a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="tab-1" class="tab-pane active">
@@ -18,38 +17,53 @@
                                 <input type="hidden" name="Id" value="@Model.Entity.Id"/>
                                 <fieldset class="form-horizontal">
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">所属校区:</label>
-                                        <div class="col-sm-8">
-                                            <select class="form-control" name="SchoolId" >
-                                                @foreach (var item in Model.SchoolList)
-                                                {
-                                                    <option value="@item.Id">@item.Name</option>
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
                                         <label class="col-sm-2 control-label">课程:</label>
                                         <div class="col-sm-8">
                                             <input type="text" name="Name" value="@Model.Entity.Name" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">科目</label>
+                                        <label class="col-sm-2 control-label">目标学员</label>
                                         <div class="col-sm-8 ">
-                                            <input type="text" name="Type" value="@Model.Entity.Type" class="form-control" />
+                                            <input type="text" name="Student" value="@Model.Entity.Student" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label">主修:</label>
+                                        <label class="col-sm-2 control-label">教材</label>
+                                        <div class="col-sm-8 ">
+                                            <input type="text" name="Book" value="@Model.Entity.Book" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">教师</label>
+                                        <div class="col-sm-8 ">
+                                            <input type="text" name="Teacher" value="@Model.Entity.Teacher" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">排序</label>
+                                        <div class="col-sm-8 ">
+                                            <input type="text" name="OrderNum" value="@Model.Entity.OrderNum" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">描述:</label>
+                                        <div class="col-sm-8">
+                                            <textarea name="Remark"  class="form-control">@Model.Entity.Remark</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">主修:</label>
                                         <div class="col-sm-8">
                                             <label class="checkbox-inline">
                                                 <input type="checkbox" name="IsMain" class="i-checks" value="true" @(Model.Entity.IsMain? "checked" : "")>
                                             </label>
                                         </div>
                                     </div>
+                                    
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">图片</label>
+                                        <label class="col-sm-2 control-label">封面</label>
                                         <div class="col-sm-8">
                                             <a href="@Model.Entity.Photo" target="_blank"><img src="@Model.Entity.Photo" class="headPhoto" /> </a> 
                                             <input type="hidden" name="Photo" id="photo" value="@Model.Entity.Photo"/>
@@ -57,15 +71,6 @@
                                         </div>
                                     </div>
                                 </fieldset>
-                        </div>
-                    </div>
-                    <div id="tab-2" class="tab-pane ">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <textarea name="DecodeInfo" id="info" class="form-control summernote">@Model.Entity.DecodeInfo</textarea>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -85,7 +90,6 @@
 
 
 @section Styles {
-    @Styles.Render("~/plugins/summernoteStyles")
     @Styles.Render("~/plugins/dropZoneStyles") <!--文件上传-->
 
 }
@@ -94,6 +98,5 @@
 @section Scripts {
     @Scripts.Render("~/plugins/dropZone")
     @Scripts.Render("~/plugins/validate")
-    @Scripts.Render("~/plugins/summernote")
     @Scripts.Render("~/Areas/Admin/Scripts/class/edit.js")
 }

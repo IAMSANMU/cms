@@ -128,6 +128,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Upload\" />
+    <Folder Include="Views\Teacher\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -141,10 +142,12 @@
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\PhotoController.cs" />
     <Compile Include="Areas\Admin\Controllers\SectionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StaffController.cs" />
     <Compile Include="Areas\Admin\Controllers\TemplateController.cs" />
     <Compile Include="Areas\Admin\Controllers\UploadController.cs" />
     <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Admin\Controllers\SchoolController.cs" />
+    <Compile Include="Areas\Admin\Models\Admin\StaffModel.cs" />
     <Compile Include="Areas\Admin\Models\Admin\ClassModel.cs" />
     <Compile Include="Areas\Admin\Models\Admin\CompanyModel.cs" />
     <Compile Include="Areas\Admin\Models\Admin\ContextModel.cs" />
@@ -157,7 +160,10 @@
     <Compile Include="Areas\Admin\Controllers\AreaController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,6 +194,8 @@
     <Content Include="Areas\Admin\Scripts\school\index.js" />
     <Content Include="Areas\Admin\Scripts\section\edit.js" />
     <Content Include="Areas\Admin\Scripts\section\index.js" />
+    <Content Include="Areas\Admin\Scripts\staff\edit.js" />
+    <Content Include="Areas\Admin\Scripts\staff\index.js" />
     <Content Include="Areas\Admin\Scripts\template\edit.js" />
     <Content Include="Areas\Admin\Scripts\template\index.js" />
     <Content Include="changeLog.txt" />
@@ -196,6 +204,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\email.css" />
+    <Content Include="Content\front\news.css" />
     <Content Include="Content\patterns\1.png" />
     <Content Include="Content\patterns\2.png" />
     <Content Include="Content\patterns\3.png" />
@@ -441,6 +450,8 @@
     <Content Include="Areas\Admin\Views\Photo\ImgList.cshtml" />
     <Content Include="Areas\Admin\Views\Photo\AddImg.cshtml" />
     <Content Include="Areas\Admin\Views\Photo\EditImg.cshtml" />
+    <Content Include="Areas\Admin\Views\Staff\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Staff\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Inspinia.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Images\a1.jpg" />
@@ -1784,6 +1795,11 @@
     <Content Include="Views\Shared\Front\_FFooter.cshtml" />
     <Content Include="Views\Shared\Front\_FHeader.cshtml" />
     <Content Include="Views\Index\Index.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Index\Order.cshtml" />
+    <Content Include="Views\News\Info.cshtml" />
+    <Content Include="Views\Index\Notices.cshtml" />
+    <Content Include="Views\Class\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

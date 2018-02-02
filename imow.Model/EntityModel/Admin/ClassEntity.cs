@@ -19,20 +19,11 @@ namespace imow.Model.EntityModel.Admin
         /// </summary>
         public int Id { get; set; }
 
-        /// <summary>
-        ///SchoolId
-        /// </summary>
-        public int SchoolId { get; set; }
 
         /// <summary>
         ///Name
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        ///Type
-        /// </summary>
-        public string Type { get; set; }
 
         /// <summary>
         ///IsDel
@@ -48,32 +39,20 @@ namespace imow.Model.EntityModel.Admin
         /// </summary>
         public DateTime CreateTime { get; set; }
 
-        /// <summary>
-        ///UpdateTime
-        /// </summary>
-        public DateTime UpdateTime { get; set; }
-
-        /// <summary>
-        ///Info
-        /// </summary>
-        [JsonIgnore]
-        public string Info { get; set; }
-        [JsonIgnore]
-        public string DecodeInfo
-        {
-            get
-            {
-                return string.IsNullOrEmpty(Info) ? "" : StringHelper.UnBase64(Info);
-            }
-            set { Info = value; }
-        }
 
         /// <summary>
         ///Photo
         /// </summary>
         public string Photo { get; set; }
 
-        public SchoolEntity SchoolEntity { get; set; }
+        public int? OrderNum { get; set; }
+
+        public string Remark { get; set; }
+
+        public string Student { get; set; }
+
+        public string Teacher { get; set; }
+        public string Book { get; set; }
 
     }
 
@@ -86,10 +65,7 @@ namespace imow.Model.EntityModel.Admin
         public ClassEntityOrmMapper()
         {
             base.Table("ecClass");
-            Map(f => f.SchoolEntity).Ignore();//设置忽略
-            Map(f => f.DecodeInfo).Ignore();//设置忽略
             Map(f => f.Id).Key(KeyType.Identity);//设置主键  (如果主键名称不包含字母“ID”，请设置)      
-            Map(f => f.SchoolId).ForignKey<SchoolEntity>(s => s.Id);
             AutoMap();
         }
     }

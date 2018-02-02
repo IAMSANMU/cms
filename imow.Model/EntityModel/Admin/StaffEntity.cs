@@ -15,7 +15,12 @@ namespace imow.Model.EntityModel.Admin
         /// <summary>
         ///Id
         /// </summary>
-        public Int64 Id { get; set; }
+        public int Id { get; set; }
+
+        /// <summary>
+        ///IsChina
+        /// </summary>
+        public bool IsChina { get; set; }
 
         /// <summary>
         ///CName
@@ -35,32 +40,7 @@ namespace imow.Model.EntityModel.Admin
         /// <summary>
         ///Birthday
         /// </summary>
-        public DateTime Birthday { get; set; }
-
-        /// <summary>
-        ///IsDel
-        /// </summary>
-        public bool IsDel { get; set; }
-
-        /// <summary>
-        ///CreateTime
-        /// </summary>
-        public DateTime CreateTime { get; set; }
-
-        /// <summary>
-        ///Tel
-        /// </summary>
-        public string Tel { get; set; }
-
-        /// <summary>
-        ///WorkTime
-        /// </summary>
-        public DateTime? WorkTime { get; set; }
-
-        /// <summary>
-        ///OutTime
-        /// </summary>
-        public DateTime? OutTime { get; set; }
+        public DateTime? Birthday { get; set; }
 
         /// <summary>
         ///Title
@@ -73,25 +53,46 @@ namespace imow.Model.EntityModel.Admin
         public string Info { get; set; }
 
         /// <summary>
+        ///Tel
+        /// </summary>
+        public string Tel { get; set; }
+
+        /// <summary>
         ///Head
         /// </summary>
         public string Head { get; set; }
 
         /// <summary>
-        ///IsChina
-        /// </summary>
-        public bool IsChina { get; set; }
-
-        /// <summary>
-        /// 是否推荐
-        /// </summary>
-        public bool IsCommand { get; set; }
-        public bool IsStop { get; set; }
-        /// <summary>
-        /// 籍贯
+        ///Origo
         /// </summary>
         public string Origo { get; set; }
 
+        /// <summary>
+        ///SchoolId
+        /// </summary>
+        public int SchoolId { get; set; }
+
+        /// <summary>
+        ///IsDel
+        /// </summary>
+        public bool IsDel { get; set; }
+
+        /// <summary>
+        ///CreateTime
+        /// </summary>
+        public DateTime CreateTime { get; set; }
+
+        /// <summary>
+        ///IsCommand
+        /// </summary>
+        public bool IsCommand { get; set; }
+
+        /// <summary>
+        ///IsStop
+        /// </summary>
+        public bool IsStop { get; set; }
+
+        public SchoolEntity SchoolEntity { get; set; }
 
     }
 
@@ -104,9 +105,11 @@ namespace imow.Model.EntityModel.Admin
         public StaffEntityOrmMapper()
         {
             base.Table("ecStaff");
-            //Map(f => f.UserID).Ignore();//设置忽略
-            Map(f => f.Id).Key(KeyType.Assigned);//设置主键  (如果主键名称不包含字母“ID”，请设置)      
+            Map(f => f.SchoolEntity).Ignore();//设置忽略
+            Map(f => f.Id).Key(KeyType.Identity); //设置主键  (如果主键名称不包含字母“ID”，请设置)      
+            Map(f => f.SchoolId).ForignKey<SchoolEntity>(f => f.Id);
             AutoMap();
         }
     }
 }
+

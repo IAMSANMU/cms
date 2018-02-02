@@ -4,34 +4,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DapperExtensions;
+using imow.Core;
 using imow.IRepository;
+using imow.IRepository.Admin;
 using imow.Model.EntityModel;
 using imow.Model.EntityModel.Admin;
+using Imow.Framework.Cache.DistributedCache.Storage;
 
 namespace imow.Services.BussinessService.Admin
 {
     public class StaffService : IBaseService
     {
-        private readonly IBaseRepository<StaffEntity> _staffDao;
-        public StaffService(IBaseRepository<StaffEntity> staffDao)
+        private readonly IStaffRepository _staffDao;
+        private readonly CacheFactory _cache;
+        public StaffService(IStaffRepository staffDao, CacheFactory cache)
         {
             _staffDao = staffDao;
+            _cache = cache;
         }
 
         public void Add(StaffEntity entity)
         {
             _staffDao.Add(entity);
+            RemoveCache();
         }
 
         public void Update(StaffEntity entity)
         {
             _staffDao.Update(entity);
+            RemoveCache();
         }
 
-        public IEnumerable<StaffEntity> GetAll( )
-        {
-            return _staffDao.GetList(Predicates.Field<StaffEntity>(f=>f.IsDel,Operator.Eq,false));
-        }
+
 
         public IEnumerable<StaffEntity> GetList(int[] ids)
         {
@@ -49,17 +53,19 @@ namespace imow.Services.BussinessService.Admin
             List<StaffEntity> dbList = GetList(ids).ToList();
             dbList.ForEach(f => { f.IsDel = true; });
             _staffDao.UpdateBatch(dbList);
+            RemoveCache();
         }
         public void Restore(int[] ids)
         {
             List<StaffEntity> dbList = GetList(ids).ToList();
             dbList.ForEach(f => { f.IsDel = false; });
             _staffDao.UpdateBatch(dbList);
+            RemoveCache();
         }
 
-        public StaffEntity Get(int id)
+    public StaffEntity Get(int id)
         {
-           return _staffDao.Get(id.ToString());
+            return _staffDao.Get(id.ToString());
         }
         public IEnumerable<StaffEntity> GetListByPage(int pageSize, int pageIndex, string sort, string sortType,
             List<SearchModel> searchModels, out long count)
@@ -68,5 +74,20 @@ namespace imow.Services.BussinessService.Admin
                 out count);
         }
 
+        public void RemoveCache()
+        {
+            _cache.Delete(new[] {CacheKey.IndexTeacherCacheKey});
+        }
+
+        #region 前端方法
+        public IEnumerable<StaffEntity> GetCommond()
+        {
+            var group = Predicates.Group(GroupOperator.And,
+                Predicates.Field<StaffEntity>(f => f.IsDel, Operator.Eq, false),
+                Predicates.Field<StaffEntity>(f => f.IsStop, Operator.Eq, false),
+                Predicates.Field<StaffEntity>(f => f.IsCommand, Operator.Eq, true));
+            return _cache.GetOrSetValue(CacheKey.IndexTeacherCacheKey, ()=> _staffDao.GetList(group));
+        }
+        #endregion
     }
 }

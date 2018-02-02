@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DapperExtensions;
+using imow.Core;
+using imow.Core.config;
 using imow.IRepository;
 using imow.Model.EntityModel.Admin;
+using Imow.Framework.Cache.DistributedCache.Storage;
 using Imow.Framework.Db;
+using Imow.Framework.Engine;
 
 namespace imow.Services.BussinessService.Admin
 {
@@ -14,11 +18,13 @@ namespace imow.Services.BussinessService.Admin
     {
         private readonly IBaseRepository<PhotoEntity> _dao;
         private readonly IBaseRepository<PhotoImgEntity> _imgDao;
+        private readonly CacheFactory _cache;
 
-        public PhotoService(IBaseRepository<PhotoEntity> dao, IBaseRepository<PhotoImgEntity> imgDao)
+        public PhotoService(IBaseRepository<PhotoEntity> dao, IBaseRepository<PhotoImgEntity> imgDao,CacheFactory cache)
         {
             _dao = dao;
             _imgDao = imgDao;
+            _cache = cache;
         }
 
         public IEnumerable<PhotoEntity> GetAll(bool isDel)
@@ -43,6 +49,7 @@ namespace imow.Services.BussinessService.Admin
         public void Update(PhotoEntity entity)
         {
             _dao.Update(entity);
+            RemoveCache(entity.Id);
         }
 
         public void Delete(int id)
@@ -80,25 +87,52 @@ namespace imow.Services.BussinessService.Admin
             using (TransactionScope scope = new TransactionScope())
             {
                 _imgDao.Add(entity);
-                _dao.Update(photo);
+                Update(photo);
                 scope.Complete();
             }
         }
         public void UpdateImg(PhotoImgEntity entity)
         {
             _imgDao.Update(entity);
+            RemoveCache(entity.PhotoId);
         }
         public void DeleteImg(int id)
         {
             PhotoImgEntity img = _imgDao.Get(id.ToString());
             img.IsDel = true;
             _imgDao.Update(img);
+            RemoveCache(img.PhotoId);
         }
 
         public PhotoImgEntity GetImg(int id)
         {
             return _imgDao.Get(id.ToString());
         }
+
+
+
+        #region 前台方法
+
+        public IEnumerable<PhotoImgEntity> GetIndexImg()
+        {
+
+            ImowConfig imowConfig = ImowEngineContext.Current.ResolveConfig<ImowConfig>();
+            int photoId = imowConfig.PhotoId;
+            string cacheKey = string.Format(CacheKey.IndexSchoolCacheKey, photoId);
+            return _cache.GetOrSetValue(cacheKey, () => GetImgAll(photoId));
+        }
+
+        public void RemoveCache(int pid)
+        {
+            ImowConfig imowConfig = ImowEngineContext.Current.ResolveConfig<ImowConfig>();
+            int photoId = imowConfig.PhotoId;
+            if (pid == photoId)
+            {
+                _cache.Delete(new string[] { string.Format(CacheKey.IndexSchoolCacheKey,photoId) });
+            }
+        }
+
+        #endregion
 
     }
 }

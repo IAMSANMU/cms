@@ -11,5 +11,8 @@ namespace imow.AdminEtl.Models
         public List<IndexLoopEntity> LoopList { get; set; }
         public List<ClassEntity> ClassList { get; set; }
 
+        public List<StaffEntity> StaffList { get; set; }
+        public List<PhotoImgEntity> ImgList { get; set; }
+
     }
 }

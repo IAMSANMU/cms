@@ -1,0 +1,147 @@
+﻿@model imow.AdminEtl.Areas.Admin.Models.Admin.StaffModel
+@{
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+}
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-sm-12 ibox">
+            <div class="ibox-content">
+                <form role="form" id="saveForm" class="form-horizontal" method="post" action="@Url.Action("Modify", "Staff")">
+                    <div class="row clearfix">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">所属校区</label>
+                                <div class="col-sm-8">
+                                    <input type="hidden" name="Id" value="@Model.Entity.Id"/>
+                                    <select class="form-control" name="SchoolId">
+                                        @foreach (var item in Model.SchoolList)
+                                        {
+                                            <option value="@item.Id" @(item.Id == Model.Entity.SchoolId ? "selected" : "")>@item.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">类型</label>
+                                <div class="col-sm-8">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="IsChina" class="i-radios" value="true" @(Model.Entity.IsChina ? "checked" : "")>中教
+                                    </label>
+                                    <label class="radio-inline" title="">
+                                        <input type="radio" name="IsChina" class="i-radios" value="false" @(!Model.Entity.IsChina ? "checked" : "")>外教
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">性别</label>
+                                <div class="col-sm-8">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="Sex" class="i-radios" value="true" @(Model.Entity.Sex ? "checked" : "")>男
+                                    </label>
+                                    <label class="radio-inline" title="">
+                                        <input type="radio" name="Sex" class="i-radios" value="false" @(!Model.Entity.Sex ? "checked" : "")>女
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">出生年月</label>
+                                <div class="col-sm-8 ">
+                                    <div class="input-group date ">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <input type="text" name="Birthday" data-provide="datepicker" class="form-control" value="@(Model.Entity.Birthday==null?"":Model.Entity.Birthday.Value.ToString("yyyy-MM-dd"))">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">联系电话</label>
+                                <div class="col-sm-8 ">
+                                    <input type="text" name="Tel" value="@Model.Entity.Tel" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">籍贯</label>
+                                <div class="col-sm-8 ">
+                                    <input type="text" name="Origo" value="@Model.Entity.Origo" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">头像</label>
+                                <div class="col-sm-8">
+                                    <a href="@Model.Entity.Head" target="_blank"><img src="@Model.Entity.Head" class="headPhoto" /> </a>
+                                    <input type="hidden" name="Head" id="photo" value="@Model.Entity.Head" />
+                                    <button class="btn btn-primary fileinput-button dz-clickable" data-params="{type:'staff'}" data-target="photo" type="button">上传文件</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">中文姓名</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="CName" value="@Model.Entity.CName" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">英文姓名</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="EName" value="@Model.Entity.EName" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">离职:</label>
+                                <div class="col-sm-8">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="IsStop" class="i-checks" value="true" @(Model.Entity.IsStop ? "checked" : "")>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">推荐到首页:</label>
+                                <div class="col-sm-8">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="IsCommand" class="i-checks" value="true" @(Model.Entity.IsCommand ? "checked" : "")>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">个性签名:</label>
+                                <div class="col-sm-8">
+                                    <textarea name="Title" class="form-control">@Model.Entity.Title</textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">简介:</label>
+                                <div class="col-sm-8">
+                                    <textarea name="Info" class="form-control">@Model.Entity.Info</textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <div class="form-group text-center">
+                                <button type="button" class="btn btn-w-m btn-primary ladda-button" id="btnSave" data-style="expand-right">保存</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Styles {
+    @Styles.Render("~/plugins/dropZoneStyles") <!--文件上传-->
+    @Styles.Render("~/plugins/datepickerStyles")
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/plugins/dropZone")
+    @Scripts.Render("~/plugins/validate")
+    @Scripts.Render("~/plugins/datepicker")
+    @Scripts.Render("~/Areas/Admin/Scripts/staff/edit.js")
+}
