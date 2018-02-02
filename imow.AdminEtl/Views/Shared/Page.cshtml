@@ -1,0 +1,17 @@
+﻿@model imow.AdminEtl.Models.Paging
+
+@if (Model.TotalItemCount != 0)
+{
+    <!-- 翻页 -->
+    <div class="pagination">
+        <ul class="text-center pagination">
+            @Html.Pager(Model.PageSize, Model.CurrentPage, Model.TotalItemCount).Options(o =>
+                    o.Action(Model.RouteData.Values["action"].ToString()).PageRouteValueKey("p")
+                        .RouteValues(Model.RouteValueDictionary).AddRouteValue("controller", Model.RouteData.Values["controller"].ToString()).
+                        SetNextPageText("下一页").SetPreviousPageText("上一页").SetFirstPageText("首页").SetLastPageText("尾页").
+                        DisplayFirstAndLastPage().DisplayTemplate("Pagination"))
+        </ul>
+    </div>
+
+
+}

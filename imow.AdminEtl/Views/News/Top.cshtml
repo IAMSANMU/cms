@@ -1,0 +1,19 @@
+﻿@model imow.AdminEtl.Models.NewsModel
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title ">
+            公告
+        </h1>
+    </div>
+    <div class="panel-body">
+        <ul class="list-unstyled notice">
+            @foreach (var item in Model.NewsList)
+            {
+                <li>
+                    <a href="" target="_blank" class="col-md-10">@item.Title</a>
+                    <span class="col-md-2">@item.CreateTime.ToString("dd")日</span>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

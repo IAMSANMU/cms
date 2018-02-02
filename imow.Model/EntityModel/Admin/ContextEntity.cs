@@ -102,6 +102,7 @@ namespace imow.Model.EntityModel.Admin
         public bool IsShow { get; set; }
 
         public SectionEntity SectionEntity { get; set; }
+
     }
 
     /// <summary>

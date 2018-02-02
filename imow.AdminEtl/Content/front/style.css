@@ -3,6 +3,10 @@ html, body{
 	background:	#fff;
     font-family: 'Î¢ÈíÑÅºÚ';
 }
+a,a:hover,a:active,a:visited,a:link {
+
+    text-decoration: none !important;
+}
 
 .panel-default >.panel-heading,.panel-default >.panel-footer {
     background-color: #ffffff;
@@ -58,7 +62,7 @@ body a:hover{
     font-family: 'Dancing Script', cursive;
 }
 .navbar-default {
-    background-color: #07cbc9;
+    background-color: #05969b;
     border-color:transparent;
 }
 .navbar {
@@ -231,9 +235,16 @@ transition: 0.5s all;
 	-moz-transition: 0.5s all;
 	-ms-transition: 0.5s all;
 }
+.slick-slide {
+    outline: none;
+
+}
 .teachers{
 padding:80px 0;
 background: #393939;
+}
+.cteachers {
+    background: #393939;
 }
 .team-grid img {
 border: 2px solid transparent;
@@ -242,6 +253,10 @@ border-radius: 100%;
 -o-border-radius: 100%;
 -ms-border-radius: 100%;
 -moz-border-radius: 100%;
+    display: inline !important;
+    height: 220px;
+    width: 190px;
+
 }
 .teach-head h3{
     text-align: center;
@@ -343,10 +358,11 @@ margin-top:50px;
   color: #757575;
   line-height: 2em;
   font-size: 14px;
+    padding: 5px 0;
 }
-.features-right p:nth-child(2) {
+/*.features-right p:nth-child(2) {
   margin: 19px 0;
-}
+}*/
 .facilities{
   padding: 80px 0;
   background: #eee;
@@ -747,6 +763,7 @@ padding-right:0;
 /*--services-page--*/
 .ser-img img {
     width: 100%;
+    height: 100px
 }
 .caption h4 {
     color: #2FD828;
@@ -767,27 +784,29 @@ padding-right:0;
 .row{
     margin:0;
 }
-.ser-img{
-    float:left;
-    width:39%;
-}
-.caption{
+/*.caption{
     float:right;
     width:57%;
-}
+}*/
 .services-grid:nth-child(3),.services-grid:nth-child(4){
     margin-top:50px;
 }
 .services-top{
     padding:80px 0 0 0;
-    background: url(../images/back.jpg) no-repeat 0px 0px;
-    background-size: cover;
+    background: #f5f5f5;
+    /*background: url("/Images/front/back.jpg") no-repeat 0px 0px;*/
+    /*background-size: cover;*/
     -webkit-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
     -moz-background-size: cover;
     min-height:450px;
 }
+.services-top h3 {
+    font-weight: 600;
+    font-size: 20px;
+}
+
 .ser-first{
     padding:80px 0;
 }
@@ -834,17 +853,30 @@ padding-right:0;
     color: #fc3a3a;
     padding-left: 5px;
 }
-.ser-first-grid h3 {
+.ser-first-grid h3 ,.ser-first-grid h3 > a{
     margin: 26px 0 10px 0;
     color: #2FD828;
     font-weight:600;
     font-size: 20px;
 }
+.ser-first-grid h3 > a:active {
+    text-decoration:none;
+}
+
+.ser-first-grid h3 > a:hover {
+    color: #c2c2c2;
+    text-decoration:none;
+}
+
+
+
 .ser-first-grid  p {
     margin: 0px 0 0 0;
     font-size: 14px;
     color: #757575;
     line-height: 2em;
+    height: 200px;
+    overflow: hidden;
 }
 .ser-first-grid span {
     font-size: 33px;
@@ -854,6 +886,10 @@ padding-right:0;
     padding: 25px 25px;
     text-align: center;
 }
+
+
+
+
 /*-- //services-page --*/
 /*-- to-top --*/
 #toTop {

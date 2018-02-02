@@ -34,6 +34,7 @@
         public static readonly string IndexSchoolCacheKey = "Index-School-{0}";
         public static readonly string IndexClassCacheKey = "Index-Class";
         public static readonly string IndexTeacherCacheKey = "Index-Teacher";
+        public static readonly string TopNewsCacheKey = "TopNews";
 
 
 

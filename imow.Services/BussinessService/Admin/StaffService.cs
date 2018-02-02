@@ -88,6 +88,18 @@ namespace imow.Services.BussinessService.Admin
                 Predicates.Field<StaffEntity>(f => f.IsCommand, Operator.Eq, true));
             return _cache.GetOrSetValue(CacheKey.IndexTeacherCacheKey, ()=> _staffDao.GetList(group));
         }
+
+
+        public IEnumerable<StaffEntity> GetAll()
+        {
+            var group = Predicates.Group(GroupOperator.And,
+                Predicates.Field<StaffEntity>(f => f.IsDel, Operator.Eq, false),
+                Predicates.Field<StaffEntity>(f => f.IsStop, Operator.Eq, false));
+            List<ISort> sort = new List<ISort>();
+            sort.Add(Predicates.Sort<StaffEntity>(f => f.IsCommand,false));
+            return _staffDao.GetList(group,sort);
+        }
+
         #endregion
     }
 }

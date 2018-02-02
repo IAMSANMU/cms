@@ -1,4 +1,5 @@
-﻿@{
+﻿@model imow.AdminEtl.Models.NewsModel
+@{
     Layout = "~/Views/Shared/Front/_FLayout.cshtml";
 }
 <!-- //banner -->
@@ -11,29 +12,28 @@
                 <div class="panel-heading">
                     <h1 class="panel-title title text-center">
                         <strong>
-                            关于开展2017年双色球派奖活动的公告
+                            @Model.News.Title
                         </strong>
                     </h1>
                     <div class="autor">
-                        <span>wairen</span>
-                        <span>2017-12-11</span>
-                        <span>点击:100</span>
+                        <span>@Model.News.Author</span>
+                        <span>@Model.News.CreateTime.ToShortDateString()</span>
+                        <span>点击:@Model.News.ViewCount</span>
                     </div>
                 </div>
 
                 <div class="panel-body">
-                    <p>为提升中国福利<a href="http://www.cailele.com/" target="_blank">彩票</a><a href="/lottery/ssq/" target="_blank">双色球</a>的品牌影响力，进一步回馈广大公众对双色球的喜爱和支持，中国福利彩票发行管理中心决定开展2017年双色球游戏派奖活动。现就有关事项公告如下：<br><strong>（一）派奖时间</strong><br>自双色球2017130期（开奖日期为2017年11月5日，星期日）开始，安排连续派奖20期。</p>
-
+                    @Html.Raw(Model.News.DecodeContext)
                 </div>
                 <div class="panel-footer">
-                    <label class="label-info label">责任编辑：wangxw</label>
+                    <label class="label-info label">责任编辑：@Model.News.Author</label>
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="row">
                 <div class="col-sm-12">
-                    @Html.Action("Notices","Index")
+                    @Html.Action("Top","News")
                 </div>
             </div>
             <div class="row clearfix">

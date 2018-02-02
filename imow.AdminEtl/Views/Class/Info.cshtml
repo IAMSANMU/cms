@@ -1,0 +1,28 @@
+﻿@model imow.AdminEtl.Models.ClassModel
+@{
+    Layout = "~/Views/Shared/Front/_FLayout.cshtml";
+}
+<div class="features">
+    <div class="container">
+        <div class="col-md-5 features-left">
+            <img src="@Model.Entity.Photo" alt="">
+        </div>
+        <div class="col-md-7 features-right">
+            <h4>@Model.Entity.Name</h4>
+            <p>
+                目标学员:@Model.Entity.Student
+            </p>
+            <p>
+                教材:@Model.Entity.Book
+            </p>
+            <p>
+                教师:@Model.Entity.Teacher
+            </p>
+            <p>
+                @Model.Entity.Remark
+            </p>
+
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

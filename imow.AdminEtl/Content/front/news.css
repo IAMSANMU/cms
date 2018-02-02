@@ -11,7 +11,7 @@
 .news {padding:10px 20px;}
 .news dl {border-bottom:1px dashed #E9D8C7;color:#808080;padding:10px 0 3px;}
 .news dt {height:25px; font-weight:300}
-.news dt a {font-weight:bolder;font-size:14px;}
+.news dt a {font-weight:bolder;font-size:14px; padding-left:12px}
 .news dd {line-height:20px;padding-left:12px; font-size:12px}
 .news dd a {color:#666;text-decoration:underline;}
 .news dd.newstag {line-height:30px;}
@@ -34,11 +34,6 @@
 .news .notice li a{
     font-size: 12px;
     color: #666;
-    display: inline-block;
-    overflow: hidden;
-    width: 200px;
-    vertical-align: middle;
-    height: 20px;
 }
 .news .notice li a:hover {
     color: #f32;

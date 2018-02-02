@@ -4,22 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DapperExtensions;
+using imow.Core;
 using imow.IRepository;
 using imow.IRepository.Admin;
 using imow.Model.EntityModel;
 using imow.Model.EntityModel.Admin;
+using Imow.Framework.Cache.DistributedCache.Storage;
 
 namespace imow.Services.BussinessService.Admin
 {
     public class ContextService : IBaseService
     {
         private readonly IContextRepository _dao;
-
-        public ContextService(IContextRepository dao)
+        private readonly CacheFactory _cache;
+        public ContextService(IContextRepository dao, CacheFactory cache)
         {
             _dao = dao;
+            _cache = cache;
         }
 
+        public void RemoveCache()
+        {
+            _cache.Delete(new [] {CacheKey.TopNewsCacheKey });
+        }
 
         public void Add(ContextEntity entity)
         {
@@ -36,6 +43,7 @@ namespace imow.Services.BussinessService.Admin
         private void BuildHtml(ContextEntity entity)
         {
             //TODO 生成静态页
+            RemoveCache();
         }
 
         public IEnumerable<ContextEntity> GetList(int[] ids)
@@ -54,12 +62,14 @@ namespace imow.Services.BussinessService.Admin
             List<ContextEntity> dbList = GetList(ids).ToList();
             dbList.ForEach(f => { f.IsDel = true; });
             _dao.UpdateBatch(dbList);
+            RemoveCache();
         }
         public void Restore(int[] ids)
         {
             List<ContextEntity> dbList = GetList(ids).ToList();
             dbList.ForEach(f => { f.IsDel = false; });
             _dao.UpdateBatch(dbList);
+            RemoveCache();
         }
 
         public ContextEntity Get(int id)
@@ -73,5 +83,18 @@ namespace imow.Services.BussinessService.Admin
                 out count);
         }
 
+        #region 前端方法
+
+        public IEnumerable<ContextEntity> GetListByPage(int pageSize,int pageIndex,out long count)
+        {
+            return _dao.GetListByPage(pageSize, pageIndex, out count);
+        }
+
+        public IEnumerable<ContextEntity> GetTop(int pageSize)
+        {
+            return _cache.GetOrSetValue(CacheKey.TopNewsCacheKey,()=> _dao.GetTop(pageSize));
+        }
+
+        #endregion
     }
 }

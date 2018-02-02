@@ -61,6 +61,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MvcPaging, Version=2.1.8.40, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcPaging.2.1.8\lib\net40\MvcPaging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -128,7 +132,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Upload\" />
-    <Folder Include="Views\Teacher\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -172,8 +175,12 @@
     <Compile Include="Areas\Admin\Models\Admin\AdminUserModel.cs" />
     <Compile Include="Areas\Admin\Models\Admin\HomeModel.cs" />
     <Compile Include="Areas\Admin\Models\Admin\SaveUserModel.cs" />
+    <Compile Include="Models\TeacherModel.cs" />
+    <Compile Include="Models\ClassModel.cs" />
     <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Models\ListSearchModel.cs" />
+    <Compile Include="Models\NewsModel.cs" />
+    <Compile Include="Models\Paging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1798,8 +1805,12 @@
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Index\Order.cshtml" />
     <Content Include="Views\News\Info.cshtml" />
-    <Content Include="Views\Index\Notices.cshtml" />
+    <Content Include="Views\News\Top.cshtml" />
     <Content Include="Views\Class\Index.cshtml" />
+    <Content Include="Views\Class\Info.cshtml" />
+    <Content Include="Views\Shared\Page.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Pagination.cshtml" />
+    <Content Include="Views\Teacher\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

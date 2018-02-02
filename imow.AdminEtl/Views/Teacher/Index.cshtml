@@ -1,0 +1,111 @@
+﻿@model imow.AdminEtl.Models.TeacherModel
+@{
+    Layout = "~/Views/Shared/Front/_FLayout.cshtml";
+}
+
+<div class="teachers">
+    <div class="container">
+        <div class="teach-head">
+            <h3>外教风采</h3>
+            <p>
+                泰弗尔教育是经国家外专局认证，具有聘请外国专家资质的语言培训机构，每一位外籍教师接受过TEFL（
+                英语作为外语教学资格证书）或者TESOL（外语教学资格证书）证书培训课程培训，并拥有1年以上教授非英语
+                国家儿童英语的经验。为了更好的为儿童教授英语，外籍培训师一旦加入我们泰弗尔可优中小学英语中心，也
+                会接受我们为期3个月的入职培训课程。该课程以CUTE KIDS（针对少儿的外语教学资格）的培训课程为主。不
+                仅能让学生学会纯正的外语，而且也不会厚此薄彼，将学校的知识点遗漏。</>
+            </p>
+        </div>
+        <div class="team-grids slick">
+            @foreach (var item in Model.OtherList)
+            {
+                <div class="col-md-3 team-grid text-center">
+                    <div class="team-img">
+                        <img src="@item.Head" alt="@item.EName" />
+                        <h3>@item.EName</h3>
+                        <h4>@item.Title</h4>
+                        <p>
+                            @item.Info
+                    </p>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<div class="teachers cteachers">
+    <div class="container">
+        <div class="teach-head">
+            <h3>中教风采</h3>
+            <p>
+               可优英语的中教60%以上为留洋硕士，至少也是拥有英语专八水平名牌大学本科以上学历。在中小学英语
+                教学上有着培训教育行业至少两年以上经验，对全日制学校的英语教材、考试大纲都十分熟悉。我们的教师以
+                耐心、爱心和责任心为工作准则，教学风格活泼细致，深受学生的喜爱。
+            </p>
+        </div>
+        <div class="team-grids slick">
+            @foreach (var item in Model.ChinaList)
+            {
+                <div class="col-md-3 team-grid text-center">
+                    <div class="team-img">
+                        <img src="@item.Head" alt="@item.CName" />
+                        <h3>@item.CName (@item.EName)</h3>
+                        <h4>@item.Title</h4>
+                        <p>
+                            @item.Info
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link rel='stylesheet' type='text/css' href="~/Content/front/news.css" />
+    @Styles.Render("~/plugins/slickStyles")
+    @Styles.Render("~/plugins/slickThemeStyles")
+
+}
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function() {
+            $('.slick').slick({
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                centerMode: true,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                            infinite: true,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+
+        })
+    </script>
+    @Scripts.Render("~/plugins/slick")
+}

@@ -1,6 +1,7 @@
 ﻿@model imow.AdminEtl.Models.IndexModel
 @{
     Layout = "~/Views/Shared/Front/_FLayout.cshtml";
+    string[] iconList = new[] { "glyphicon-education", "glyphicon-pencil", "glyphicon-star", "glyphicon-thumbs-up" };
 }
 <div class="carousel slide" id="loop">
     <ol class="carousel-indicators">
@@ -33,17 +34,20 @@
         <div class="bottom-grids">
             @foreach (var item in Model.ClassList)
             {
-                <div class="col-md-3 bottom-grid ">
-                    <div class="bottom-text">
-                        <h3>@item.Name</h3>
-                        <p>
-                            @item.Remark
-                        </p>
+                var i = Model.ClassList.IndexOf(item);
+                <a target="_blank" href="@Url.Action("info","class",new {id=item.Id})"> 
+                    <div class="col-md-3 bottom-grid ">
+                        <div class="bottom-text">
+                            <h3>@item.Name </h3>
+                            <p>
+                                @item.Remark
+                            </p>
+                        </div>
+                        <div class="bottom-spa">
+                            <span class="glyphicon @iconList[i]" aria-hidden="true"></span>
+                        </div>
                     </div>
-                    <div class="bottom-spa">
-                        <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
-                    </div>
-                </div>
+                </a>
             }
         </div>
         <div class="clearfix"></div>

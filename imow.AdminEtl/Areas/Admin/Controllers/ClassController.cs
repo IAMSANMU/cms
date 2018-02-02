@@ -11,6 +11,7 @@ using imow.Framework.Tool;
 using imow.Model.EntityModel.Admin;
 using imow.Services.BussinessService.Admin;
 using Imow.Framework.Tool;
+using ClassModel = imow.AdminEtl.Areas.Admin.Models.Admin.ClassModel;
 
 namespace imow.AdminEtl.Areas.Admin.Controllers
 {

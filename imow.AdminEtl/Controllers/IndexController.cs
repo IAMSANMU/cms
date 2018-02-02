@@ -49,11 +49,5 @@ namespace imow.AdminEtl.Controllers
             return View();
         }
 
-        [ChildActionOnly]
-        public ActionResult Notices()
-        {
-
-            return View();
-        }
     }
 }
