@@ -1,0 +1,29 @@
+﻿@model imow.AdminEtl.Models.SchoolModel
+<div class="lightBoxGallery">
+    @foreach (var item in Model.PhotoList)
+    {
+        <div class="view view-seventh">
+
+            <a href="@item.Url " class="b-link-stripe b-animate-go  swipebox" title="@item.Name" data-gallery>
+                <img src="@item.Url">
+                <div class="mask">
+                    <h4>
+                        @item.Name
+                    </h4>
+                    <p>
+                        @item.Info
+                    </p>
+                </div>
+            </a>
+        </div>
+    }
+    <div id="blueimp-gallery" class="blueimp-gallery">
+        <div class="slides"></div>
+        <h3 class="title"></h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
+    </div>
+</div>

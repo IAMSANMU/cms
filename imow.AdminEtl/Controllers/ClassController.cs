@@ -25,7 +25,7 @@ namespace imow.AdminEtl.Controllers
         {
             IEnumerable<ClassEntity>  list=_service.GetAll();
             ClassModel model=new ClassModel();
-            model.ClassList = list.Skip(4).ToList();
+            model.ClassList = list.ToList();
             model.TopList = list.Take(4).ToList();
 
             return View(model);

@@ -3,13 +3,24 @@ html, body{
 	background:	#fff;
     font-family: 'Î¢ÈíÑÅºÚ';
 }
+.order-float {
+    position: absolute;
+    top: 50px;
+
+}
 a,a:hover,a:active,a:visited,a:link {
 
     text-decoration: none !important;
 }
-
+.lightBoxGallery img {
+    height: 200px;
+    width: 200px;
+}
 .panel-default >.panel-heading,.panel-default >.panel-footer {
     background-color: #ffffff;
+}
+.news .slick-arrow:before {
+    color: red;
 }
 
 h4, h5, h6,
@@ -244,7 +255,9 @@ padding:80px 0;
 background: #393939;
 }
 .cteachers {
-    background: #393939;
+    padding-top: 80px;
+    padding-bottom: 0px;
+    background: url("/Images/front/back.jpg") no-repeat 0px 0px;
 }
 .team-grid img {
 border: 2px solid transparent;
@@ -841,7 +854,7 @@ padding-right:0;
 .ser-top-grid ul li{
     list-style-type:none;
     padding-left:30px;
-    background:url(../images/arrow.png) no-repeat 0px 7px;
+    background:url(/Images/front/arrow.png) no-repeat 0px 7px;
     line-height:2.3em;
 }
 .ser-top-grid ul li a{
@@ -891,6 +904,69 @@ padding-right:0;
 
 
 /*-- //services-page --*/
+
+
+/*-- about-page --*/
+.about {
+    padding: 80px 0;
+}
+.about-grid-left img{
+    width:100%;
+}
+.about-grid h3{
+    font-size: 20px;
+    margin: 0;
+    color: #2FD828;
+    font-weight: 600;
+}
+.about-grid p{
+    color: #757575;
+    margin: 18px 0;
+    font-size: 14px;
+    line-height: 2em;
+}
+.about-grid p:nth-child(3) {
+    margin:0;
+}
+.client-say-grid p{
+    background:url(/Images/front/quote.png) no-repeat 0px 0px;
+    padding-left:50px;
+    color: #757575;
+    margin: 0px 0 0 0;
+    font-size: 14px;
+    line-height: 2em;
+
+}
+.client-say-grid h4{
+    font-size: 20px;
+    color: #2FD828;
+    font-weight: 600;
+    margin:15px 0 0 0;
+    padding-left:50px;
+}
+.about-bottom-last {
+    padding: 80px 0;
+}
+.help-grids{
+    background:#05969b;
+    padding:80px 0;
+}
+.how-we-help{
+    padding:100px 0;
+}
+
+.help-grid p{
+    color: #BBE8EA;
+    margin: 15px 0 0px 0;
+    font-size: 14px;
+    line-height:2em;
+}
+h3.tittle.tit3 {
+    color: #fff;
+    text-align: left;
+    margin-bottom: 20px;
+}
+/*-- //about-page --*/
 /*-- to-top --*/
 #toTop {
 	display: none;
@@ -1239,10 +1315,10 @@ padding-right:0;
 	.caption p {
 	  margin: 10px 0 0 0;
 	  }
-	.caption {
+	/*.caption {
 	  float: right;
 	  width: 55%;
-	}
+	}*/
 	.ser-img {
 	  float: left;
 	  width: 42%;

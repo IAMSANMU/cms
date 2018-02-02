@@ -163,9 +163,11 @@
     <Compile Include="Areas\Admin\Controllers\AreaController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\SchoolController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -175,6 +177,7 @@
     <Compile Include="Areas\Admin\Models\Admin\AdminUserModel.cs" />
     <Compile Include="Areas\Admin\Models\Admin\HomeModel.cs" />
     <Compile Include="Areas\Admin\Models\Admin\SaveUserModel.cs" />
+    <Compile Include="Models\SchoolModel.cs" />
     <Compile Include="Models\TeacherModel.cs" />
     <Compile Include="Models\ClassModel.cs" />
     <Compile Include="Models\IndexModel.cs" />
@@ -1811,6 +1814,10 @@
     <Content Include="Views\Shared\Page.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Pagination.cshtml" />
     <Content Include="Views\Teacher\Index.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\School\Index.cshtml" />
+    <Content Include="Views\School\Info.cshtml" />
+    <Content Include="Views\Shared\Photo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

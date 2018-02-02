@@ -1,0 +1,153 @@
+﻿@model imow.AdminEtl.Models.SchoolModel
+@{
+    Layout = "~/Views/Shared/Front/_FLayout.cshtml";
+}
+<!-- //banner -->
+<div class="section">
+</div>
+<div class="news">
+    <div class="row clearfix content">
+        <div class="col-md-8">
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>@Model.Entity.Name</h3>
+                            <p>
+                                联系电话: @Model.Entity.Tel
+                            </p>
+                            <p>
+                                联系地址: @Model.Entity.Province @Model.Entity.City @Model.Entity.Area @Model.Entity.Street @Model.Entity.Addr
+                            </p>
+                            <p>
+                                附近交通: @Model.Entity.Bus
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                本校课程
+                            </h3>
+                        </div>
+                        <div class="panel-body slick">
+                            @foreach (var item in Model.ClassList)
+                            {
+                                <div class="col-md-6">
+                                    <div class="thumbnail ">
+                                        <img alt="@item.Name" src="@item.Photo">
+                                        <div class="caption">
+                                            <h3>@item.Name</h3>
+                                            <p>
+                                                目标学员:@item.Student
+                                            </p>
+                                            <p>
+                                                教材:@item.Book
+                                            </p>
+                                            <p>
+                                                教师:@item.Teacher
+                                            </p>
+                                            <p>
+                                                <a target="_blank" href="@Url.Action("info", "class", new {id = item.Id})" class="label label-info ">详情</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.Action("Top", "News")
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    @Html.Action("Order", "Index")
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        学校环境
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    @Html.Partial("Photo",Model)
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+@section Styles {
+    <link rel='stylesheet' type='text/css' href="~/Content/front/news.css" />
+    @Styles.Render("~/plugins/slickStyles")
+    @Styles.Render("~/plugins/slickThemeStyles")
+    @Styles.Render("~/Content/plugins/blueimp/css/")
+
+}
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $('.slick').slick({
+                autoplay: true,
+                infinite: true,
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                centerMode: true,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                            infinite: true,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+
+        })
+    </script>
+    @Scripts.Render("~/plugins/slick")
+    @Scripts.Render("~/plugins/lightboxGallery")
+
+}

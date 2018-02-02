@@ -90,6 +90,8 @@ namespace imow.Model.EntityModel.Admin
         /// </summary>
         public string Province { get; set; }
 
+        public string Bus { get; set; }
+
         /// <summary>
         ///City
         /// </summary>
@@ -104,6 +106,8 @@ namespace imow.Model.EntityModel.Admin
         ///Street
         /// </summary>
         public string Street { get; set; }
+
+        public int PhotoId { get; set; }
 
     }
 

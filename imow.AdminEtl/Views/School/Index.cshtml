@@ -1,0 +1,63 @@
+﻿@model imow.AdminEtl.Models.SchoolModel
+@{
+    Layout = "~/Views/Shared/Front/_FLayout.cshtml";
+}
+<!-- //banner -->
+<div class="section">
+</div>
+
+
+
+<div class="container news ">
+    <div class="row clearfix">
+        <div class="col-md-8">
+            <div class="row clearfix">
+                <div class="col-md-12">
+                        <H2 class="title">
+                            <strong>校区一览</strong>
+                            <small>Schools</small>
+                        </H2>
+                    </div>
+            </div>
+            @foreach (var item in Model.SchoolList)
+            {
+                <div class="row clearfix">
+                    <div class="col-md-12">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <h3>@item.Name</h3>
+                                <p>
+                                    联系电话: @item.Tel
+                                </p>
+                                <p>
+                                    联系地址: @item.Province @item.City @item.Area @item.Street @item.Addr
+                                </p>
+                                <p>
+                                    附近交通: @item.Bus
+                                </p>
+                                <p>
+                                    <a target="_blank" href="@Url.Action("Info","school",new {id=item.Id})" class="label label-info ">详情</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-4">
+            @Html.Action("Top", "News")
+            @Html.Action("Order", "Index")
+        </div>
+    </div>
+
+
+</div>
+
+@section Styles {
+    <link rel='stylesheet' type='text/css' href="~/Content/front/news.css" />
+
+}
+
+
+@section Scripts {
+}

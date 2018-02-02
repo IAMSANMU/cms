@@ -3,7 +3,34 @@
     Layout = "~/Views/Shared/Front/_FLayout.cshtml";
 }
 
-<div class="teachers">
+<div class="teachers ">
+    <div class="container">
+        <div class="teach-head">
+            <h3>中教风采</h3>
+            <p>
+                可优英语的中教60%以上为留洋硕士，至少也是拥有英语专八水平名牌大学本科以上学历。在中小学英语
+                教学上有着培训教育行业至少两年以上经验，对全日制学校的英语教材、考试大纲都十分熟悉。我们的教师以
+                耐心、爱心和责任心为工作准则，教学风格活泼细致，深受学生的喜爱。
+            </p>
+        </div>
+        <div class="team-grids slick">
+            @foreach (var item in Model.ChinaList)
+            {
+                <div class="col-md-3 team-grid text-center">
+                    <div class="team-img">
+                        <img src="@item.Head" alt="@item.CName" />
+                        <h3>@item.CName</h3>
+                        <h4>@item.Title</h4>
+                        <p>
+                            @item.Info
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="teachers cteachers">
     <div class="container">
         <div class="teach-head">
             <h3>外教风采</h3>
@@ -34,36 +61,8 @@
 </div>
 
 
-<div class="teachers cteachers">
-    <div class="container">
-        <div class="teach-head">
-            <h3>中教风采</h3>
-            <p>
-               可优英语的中教60%以上为留洋硕士，至少也是拥有英语专八水平名牌大学本科以上学历。在中小学英语
-                教学上有着培训教育行业至少两年以上经验，对全日制学校的英语教材、考试大纲都十分熟悉。我们的教师以
-                耐心、爱心和责任心为工作准则，教学风格活泼细致，深受学生的喜爱。
-            </p>
-        </div>
-        <div class="team-grids slick">
-            @foreach (var item in Model.ChinaList)
-            {
-                <div class="col-md-3 team-grid text-center">
-                    <div class="team-img">
-                        <img src="@item.Head" alt="@item.CName" />
-                        <h3>@item.CName (@item.EName)</h3>
-                        <h4>@item.Title</h4>
-                        <p>
-                            @item.Info
-                        </p>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-</div>
 
 @section Styles {
-    <link rel='stylesheet' type='text/css' href="~/Content/front/news.css" />
     @Styles.Render("~/plugins/slickStyles")
     @Styles.Render("~/plugins/slickThemeStyles")
 
