@@ -10,8 +10,19 @@
             @foreach (var item in Model.NewsList)
             {
                 <li>
-                    <a href="" target="_blank" class="col-md-10">@item.Title</a>
-                    <span class="col-md-2">@item.CreateTime.ToString("dd")日</span>
+                    @if (item.Type == 0)
+                    {
+                        <a target="_blank" href="@Url.Action("Info", "News", new {id = item.Id})">
+                            @item.Title
+                        </a>
+                    }
+                    else
+                    {
+                        <a target="_blank" href="@item.Link">
+                            @item.Title
+                        </a>
+                    }
+                    <span class="badge">@item.CreateTime.ToString("dd")日</span>
                 </li>
             }
         </ul>

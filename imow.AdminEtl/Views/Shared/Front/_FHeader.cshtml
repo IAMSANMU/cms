@@ -1,4 +1,4 @@
-﻿<nav class="navbar navbar-default  ">
+﻿<nav class="navbar navbar-default  " role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -11,28 +11,80 @@
                 <i class="glyphicon glyphicon-education" aria-hidden="true"></i>
                 Cute Tefl
             </a>
-
         </div>
-    </div>
-</nav>
-
-<nav class="navbar navbar-default">
-    <div class="container">
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active home"><a class="hvr-overline-from-center " href="/">主页</a></li>
-                <li class="nav-about"><a class="hvr-overline-from-center " href="@Url.Action("Index","About")">关于可优</a></li>
-                <li class="nav-school"><a class="hvr-overline-from-center " href="@Url.Action("Index","School")">校区</a></li>
-                <li class="nav-class"><a class="hvr-overline-from-center " href="@Url.Action("Index","Class")">课程中心</a></li>
-                <li class="nav-teacher"><a class="hvr-overline-from-center " href="@Url.Action("Index","Teacher")">教师团队</a></li>
-                <li class="nav-news"><a class="hvr-overline-from-center " href="@Url.Action("Index","News")">新闻活动</a></li>
-                <li class="nav-learn"><a class="hvr-overline-from-center " target="_blank" href="http://www.hiphiphoorayonline.com/">在线学习</a></li>
+                <li class="nav-index @(Html.PageClass()=="index"?"active":"")"><a class="hvr-overline-from-center " href="/">主页</a></li>
+                <li class="nav-class @(Html.PageClass()=="class"?"active":"")"><a class="hvr-overline-from-center " href="@Url.Action("Index","Class")">课程中心</a></li>
+                <li class="nav-teacher @(Html.PageClass()=="teacher"?"active":"")"><a class="hvr-overline-from-center " href="@Url.Action("Index","Teacher")">教师团队</a></li>
+                <li class="nav-school @(Html.PageClass()=="school"?"active":"")"><a class="hvr-overline-from-center " href="@Url.Action("Index","School")">校区</a></li>
+                <li class="nav-news @(Html.PageClass()=="news"?"active":"")"><a class="hvr-overline-from-center " href="@Url.Action("Index","News")">新闻活动</a></li>
+                <li class="nav-about @(Html.PageClass()=="about"?"active":"")"><a class="hvr-overline-from-center " href="@Url.Action("Index","About")">关于可优</a></li>
+                <li class="nav-learn visible-lg visible-md"><a class="hvr-overline-from-center " target="_blank" href="http://www.hiphiphoorayonline.com/">在线学习</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
+<!--右侧-->
+<div class="cndns-right visible-md visible-lg">
+    <div class="cndns-right-meau meau-sev">
+        <a href="javascript:;" onclick="window.open('http://tb.53kf.com/webCompany.php?arg=keyouyingyu&style=1', '_blank', 'height=500,width=800,top=200,left=200,status=yes,toolbar=no,menubar=no,resizable=yes,scrollbars=no,location=no,titlebar=no');" class="cndns-right-btn">
+            <span class="demo-icon"></span>
+            <p>
+                在线<br />
+                客服
+            </p>
+        </a>
+    </div>
+    
+    <div class="cndns-right-meau meau-contact">
+        <a href="javascript:" class="cndns-right-btn">
+            <span class="fa fa-phone"></span>
+            <p>
+                客服<br>
+                热线
+            </p>
+        </a>
+        <div class="cndns-right-box">
+            <div class="box-border">
+                <div class="sev-t">
+                    <span class="fa fa-phone demo-icon"></span>
+                    <p>400-098-5568<br/><b>全国统一热线</b></p>
+                   
+                    <div class="clear"></div>
+                </div>
+                <span class="arrow-right"></span>
+            </div>
+        </div>
+    </div>
 
+    <div class="cndns-right-meau meau-code">
+        <a href="javascript:" class="cndns-right-btn">
+            <span class="fa fa-qrcode"></span>
+            <p>
+                关注<br />
+                微信
+            </p>
+        </a>
+        <div class="cndns-right-box">
+            <div class="box-border">
+                <div class="sev-t">
+                    <img src="~/Images/front/qrcode.jpg" />
+                    <b>关注官方微信</b>
+                </div>
+                <span class="arrow-right"></span>
+            </div>
+        </div>
+    </div>
 
+</div>
 
-
+<div class="theme-config-box visible-md visible-lg">
+    <div class="spin-icon">
+        <i class="fa fa-user fa-spin"></i>
+    </div>
+    <div class="skin-setttings">
+        @Html.Action("Order", "Index")
+    </div>
+</div>
 

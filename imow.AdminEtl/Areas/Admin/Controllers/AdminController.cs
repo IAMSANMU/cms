@@ -5,6 +5,7 @@ using EC.Common.Extensions;
 using imow.AdminEtl.Areas.Admin.Models.Admin;
 using imow.AdminEtl.Models;
 using imow.Framework.Strategy.Controller;
+using imow.Framework.Strategy.Filter;
 using imow.Framework.Tool;
 using imow.Model.EntityModel.Admin;
 using imow.Services.BussinessService.Admin;
@@ -298,7 +299,103 @@ namespace imow.AdminEtl.Areas.Admin.Controllers
             }
             return jsonResult.ToJsonResult();
         }
+        /// <summary>
+        /// 修改自身密码
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [NoPerm]
+        [MustBeLogin]
+        public ActionResult SelfPwd()
+        {
+            return View();
+        }
+        [HttpPost]
+        [NoPerm]
+        [MustBeLogin]
+        public ActionResult SelfPwd(string oldPwd, string pwd, string pwdSure)
+        {
+            AdminUserEntity loginEntity = GetAdminUser();
+            JsonResponse jsonResult = new JsonResponse();
+            if (string.IsNullOrEmpty(oldPwd) || string.IsNullOrEmpty(pwd) || string.IsNullOrEmpty(pwdSure))
+            {
+                jsonResult.Success = false;
+                jsonResult.Message = "数据错误,请重试!";
+            }
+            else if (!pwd.Equals(pwdSure))
+            {
+                jsonResult.Success = false;
+                jsonResult.Message = "两次密码不一致";
+            }
+            else
+            {
+                try
+                {
+                    oldPwd = EncryptionHelper.GetMD5AndSHA256(oldPwd);
+                    AdminUserEntity user = _adminUserService.GetAdminById(loginEntity.Id.ToString());
+                    if (user == null || !user.Pwd.Equals(oldPwd))
+                    {
+                        jsonResult.Success = false;
+                        jsonResult.Message = "旧密码错误!";
+                    }
+                    else
+                    {
+                        //修改密码
+                        pwd = EncryptionHelper.GetMD5AndSHA256(pwd);
+                        user.Pwd = pwd;
+                        _adminUserService.Update(user);
+                        jsonResult.Success = true;
+                    }
+                }
+                catch (Exception e)
+                {
 
+                    jsonResult = ErrorResponse(e.Message);
+                }
+
+            }
+            return jsonResult.ToJsonResult();
+        }
+
+        [HttpGet]
+        [NoPerm]
+        [MustBeLogin]
+        public ActionResult EditSelf()
+        {
+            AdminUserEntity loginEntity = GetAdminUser();
+            AdminUserEntity user = _adminUserService.GetAdminById(loginEntity.Id.ToString());
+            AdminUserModel model = new AdminUserModel
+            {
+                UserEntity = user
+            };
+            return View(model);
+        }
+        [HttpPost]
+        [NoPerm]
+        [MustBeLogin]
+
+        public ActionResult EditSelf(SaveUserModel model)
+        {
+            AdminUserEntity loginEntity = GetAdminUser();
+            AdminUserEntity dbEntity = _adminUserService.GetAdminById(loginEntity.Id.ToString());
+            JsonResponse jsonResult = new JsonResponse();
+            try
+            {
+                MapperHelper.Copy(model, dbEntity, false, new[] { "id", "username", "isstop", "isdel", "createtime", "pwd", "infoid", "roleId" });
+                _adminUserService.Update(dbEntity);
+                jsonResult.Success = true;
+            }
+            catch (Exception e)
+            {
+                jsonResult = ErrorResponse(e.Message);
+            }
+            return jsonResult.ToJsonResult();
+        }
+        
+        
+        
+        
+        
         #endregion
 
     }

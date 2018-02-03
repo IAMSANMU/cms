@@ -20,7 +20,7 @@ namespace imow.AdminEtl
                 "~/Content/front/style.css",
                 "~/Content/plugins/sweetalert/sweetalert.css"));
             bundles.Add(new ScriptBundle("~/web/js").Include(
-                "~/Scripts/jquery-2.1.1.min.js", "~/Scripts/front/easing.js", "~/Scripts/front/move-top.js"));
+                "~/Scripts/jquery-2.1.1.min.js", "~/Scripts/front/easing.js", "~/Scripts/front/move-top.js", "~/Scripts/front/public.js"));
 
 
 

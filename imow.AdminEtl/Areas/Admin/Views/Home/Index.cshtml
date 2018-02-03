@@ -1,10 +1,21 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Main.cshtml";
+    ViewBag.Tabs = new string[] { "更新日志_list" };
 }
+
+@section table{
+
     @try
     {
-        @Html.Raw(File.ReadAllText(Server.MapPath("/Note.html")))
+        <pre class="">
+            @Html.Raw(File.ReadAllText(Server.MapPath("/changeLog.txt")))
+        </pre>
     }
     catch
     {
     }
+
+
+}
+
+

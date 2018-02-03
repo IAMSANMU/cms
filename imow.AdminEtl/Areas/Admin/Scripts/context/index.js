@@ -36,8 +36,8 @@
             { data: "" },
             { data: "" },
             { data: "SectionEntity.Name" },
-            { data: "Title" ,render: function(data) {
-                return "<a href='' target='_blank'/>"+data+"/a>";
+            { data: "Title" ,render: function(data,type,row) {
+                return "<a href='/news/info?id=" + row.Id + "' target='_blank'/>" + data + "</a>";
             } },
             {
                 data: "IsShow",

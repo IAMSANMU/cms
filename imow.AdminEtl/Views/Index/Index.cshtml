@@ -1,38 +1,49 @@
-﻿@model imow.AdminEtl.Models.IndexModel
+﻿@using imow.AdminEtl.Models
+@model imow.AdminEtl.Models.IndexModel
 @{
     Layout = "~/Views/Shared/Front/_FLayout.cshtml";
+    var schoolModel = new SchoolModel();
+    schoolModel.PhotoList = Model.ImgList;
     string[] iconList = new[] { "glyphicon-education", "glyphicon-pencil", "glyphicon-star", "glyphicon-thumbs-up" };
 }
-<div class="carousel slide" id="loop">
-    <ol class="carousel-indicators">
-        @foreach (var item in Model.LoopList)
+
+<div class="banner2">
+    <div class="carousel slide" id="loop">
+        <ol class="carousel-indicators">
+            @foreach (var item in Model.LoopList)
             {
                 int index = Model.LoopList.IndexOf(item);
             <li data-slide-to="@index" data-target="#loop" class="@(index==0?"active":"")"></li>
-        }
-    </ol>
-    <div class="carousel-inner">
-        @foreach (var item in Model.LoopList)
+            }
+        </ol>
+        <div class="carousel-inner">
+            @foreach (var item in Model.LoopList)
             {
                 int index = Model.LoopList.IndexOf(item);
             <div class="item @(index==0?"active":"")">
                 <a href="@item.Link" title="@item.Title"><img alt="image" class="img-responsive" src="@item.Img"></a>
             </div>
-        }
+            }
+        </div>
+    </div>
+    <div class="order-float  visible-md visible-lg">
+        @Html.Action("Order", "Index")
     </div>
 </div>
+
+
 
 
 <!-- //banner -->
 <!-- banner-bottom -->
 <div class="banner-bottom">
     <div class="container">
-        <h2 class="tittle">课程列表</h2>
+        <a href="@Url.Action("Index","Class")"><h2 class="tittle">推荐课程</h2></a>
         <div class="bottom-grids">
             @foreach (var item in Model.ClassList)
             {
                 var i = Model.ClassList.IndexOf(item);
-                <a target="_blank" href="@Url.Action("info","class",new {id=item.Id})"> 
+                <a target="_blank" href="@Url.Action("info","class",new {id=item.Id})">
                     <div class="col-md-3 bottom-grid ">
                         <div class="bottom-text">
                             <h3>@item.Name </h3>
@@ -51,11 +62,17 @@
     </div>
 </div>
 <!-- //banner-bottom -->
+
+
+
+
 <!-- team -->
 <div class="teachers">
     <div class="container">
         <div class="teach-head">
+            <a href="@Url.Action("Index", "Teacher")">
             <h3>教师风采</h3>
+            </a>
             <p>
                 泰弗尔教育是经国家外专局认证，具有聘请外国专家资质的语言培训机构，每一位外籍教师接受过TEFL(
                 英语作为外语教学资格证书）或者TESOL（外语教学资格证书）证书培训课程培训，并拥有1年以上教授非英语
@@ -68,7 +85,7 @@
                 <div class="col-md-3 team-grid text-center">
                     <a href="@Url.Action("Index", "Teacher")">
                         <div class="team-img">
-                            <img src="@item.Head" alt=""/>
+                            <img src="@item.Head" alt="" />
                             <h3>@item.CName</h3>
                             <h4>@item.EName</h4>
                             <p>
@@ -86,21 +103,10 @@
 <!-- our facilities -->
 <div class="facilities">
     <div class="container">
-        <h3 class="tittle">校区风采</h3>
-        @foreach (var item in Model.ImgList)
-        {
-            <div class="view view-seventh">
-                <a href="javascript:;" class="b-link-stripe b-animate-go  swipebox" title="Image Title">
-                    <img src="@item.Url" alt="@item.Name">
-                    <div class="mask">
-                        <h4>@item.Name</h4>
-                        <p>
-                            @item.Info
-                        </p>
-                    </div>
-                </a>
-            </div>
-        }
+        <a href="@Url.Action("Index","School")">
+            <h3 class="tittle">校区风采</h3>
+        </a>
+        @Html.Partial("Photo", schoolModel)
         <div class="clearfix"></div>
     </div>
 </div>
@@ -127,10 +133,12 @@
     </div>
 </div>
 
-<div class="order-float">
-    <div class="row">
-        <div class="col-md-12">
-            @Html.Action("Order", "Index")
-        </div>
-    </div>
-</div>
+@section Styles {
+    @Styles.Render("~/Content/plugins/blueimp/css/")
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/plugins/lightboxGallery")
+}

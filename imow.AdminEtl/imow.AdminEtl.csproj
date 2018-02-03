@@ -177,6 +177,7 @@
     <Compile Include="Areas\Admin\Models\Admin\AdminUserModel.cs" />
     <Compile Include="Areas\Admin\Models\Admin\HomeModel.cs" />
     <Compile Include="Areas\Admin\Models\Admin\SaveUserModel.cs" />
+    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\SchoolModel.cs" />
     <Compile Include="Models\TeacherModel.cs" />
     <Compile Include="Models\ClassModel.cs" />
@@ -208,6 +209,7 @@
     <Content Include="Areas\Admin\Scripts\staff\index.js" />
     <Content Include="Areas\Admin\Scripts\template\edit.js" />
     <Content Include="Areas\Admin\Scripts\template\index.js" />
+    <Content Include="Areas\Admin\Scripts\user\editSelf.js" />
     <Content Include="changeLog.txt" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\app\user\empty.jpg" />
@@ -391,10 +393,14 @@
     <Content Include="Content\plugins\slick\fonts\slick.woff" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Global.asax" />
+    <Content Include="Images\front\02index-banner-8.gif" />
     <Content Include="Images\front\1.png" />
     <Content Include="Images\front\2.png" />
     <Content Include="Images\front\3.png" />
     <Content Include="Images\front\4.png" />
+    <Content Include="Images\front\arraw2.png" />
+    <Content Include="Images\front\arrow2.png" />
+    <Content Include="Images\front\qrcode.jpg" />
     <Content Include="Images\front\arr.png" />
     <Content Include="Images\front\arrow.png" />
     <Content Include="Images\front\back.jpg" />
@@ -462,6 +468,8 @@
     <Content Include="Areas\Admin\Views\Photo\EditImg.cshtml" />
     <Content Include="Areas\Admin\Views\Staff\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Staff\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\EditSelf.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\SelfPwd.cshtml" />
     <None Include="Properties\PublishProfiles\Inspinia.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Images\a1.jpg" />
@@ -1335,6 +1343,8 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\front\easing.js" />
     <Content Include="Scripts\front\move-top.js" />
+    <Content Include="Scripts\front\news\public.js" />
+    <Content Include="Scripts\front\public.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery.cookie.js" />

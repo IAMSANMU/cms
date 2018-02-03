@@ -24,11 +24,11 @@ namespace imow.Services.BussinessService.Admin
             msg = "";
             if (string.IsNullOrEmpty(model.Tel))
             {
-                msg = "请输入联系电话";
+                msg = "请输入您的联系电话";
             }
             else if (string.IsNullOrEmpty(model.Name))
             {
-                msg = "请输入姓名";
+                msg = "请输入您的姓名";
             }
             else
             {
@@ -47,7 +47,7 @@ namespace imow.Services.BussinessService.Admin
             {
                 list.Add(Predicates.Field<OrderEntity>(f => f.Id, Operator.Eq, id));
             }
-            IPredicateGroup group = Predicates.Group(GroupOperator.And, list.ToArray());
+            IPredicateGroup group = Predicates.Group(GroupOperator.Or, list.ToArray());
             IEnumerable<OrderEntity> dbList = _dao.GetList(group);
             return dbList;
         }

@@ -156,7 +156,7 @@ $.extend({
         layer.open(def);
     },
     openSmall: function(action, title) {
-        $.openWindow(action,title,"60%","70%");
+        $.openWindow(action,title,"800px","70%");
     },
     closeWindow: function (callback) {
         parent.layer.closeAll('iframe');

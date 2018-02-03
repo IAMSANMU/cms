@@ -118,7 +118,7 @@ namespace imow.Services.BussinessService.Admin
 
             ImowConfig imowConfig = ImowEngineContext.Current.ResolveConfig<ImowConfig>();
             int photoId = imowConfig.PhotoId;
-            string cacheKey = string.Format(CacheKey.IndexSchoolCacheKey, photoId);
+            string cacheKey = string.Format(CacheKey.IndexPhotoCacheKey, photoId);
             return _cache.GetOrSetValue(cacheKey, () => GetImgAll(photoId));
         }
 
@@ -128,7 +128,7 @@ namespace imow.Services.BussinessService.Admin
             int photoId = imowConfig.PhotoId;
             if (pid == photoId)
             {
-                _cache.Delete(new string[] { string.Format(CacheKey.IndexSchoolCacheKey,photoId) });
+                _cache.Delete(new string[] { string.Format(CacheKey.IndexPhotoCacheKey, photoId) });
             }
         }
 

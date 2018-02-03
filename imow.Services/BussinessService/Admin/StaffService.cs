@@ -44,7 +44,7 @@ namespace imow.Services.BussinessService.Admin
             {
                 list.Add(Predicates.Field<StaffEntity>(f => f.Id, Operator.Eq, id));
             }
-            IPredicateGroup group = Predicates.Group(GroupOperator.And, list.ToArray());
+            IPredicateGroup group = Predicates.Group(GroupOperator.Or, list.ToArray());
             IEnumerable<StaffEntity> dbList = _staffDao.GetList(group);
             return dbList;
         }

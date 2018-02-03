@@ -4,33 +4,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DapperExtensions;
+using imow.Core;
 using imow.IRepository;
 using imow.Model.EntityModel;
 using imow.Model.EntityModel.Admin;
+using Imow.Framework.Cache.DistributedCache.Storage;
 
 namespace imow.Services.BussinessService.Admin
 {
     public class SchoolService : IBaseService
     {
         private readonly IBaseRepository<SchoolEntity> _schoolDao;
-        public SchoolService(IBaseRepository<SchoolEntity> schoolDao)
+        private readonly CacheFactory _cache;
+        public SchoolService(IBaseRepository<SchoolEntity> schoolDao,CacheFactory cache)
         {
+            _cache = cache;
             _schoolDao = schoolDao;
         }
 
+        public void RemoveCache()
+        {
+            _cache.Delete(new [] {CacheKey.SchoolCacheKey});
+        }
         public void Add(SchoolEntity entity)
         {
             _schoolDao.Add(entity);
+            RemoveCache();
         }
 
         public void Update(SchoolEntity entity)
         {
             _schoolDao.Update(entity);
+            RemoveCache();
         }
 
         public IEnumerable<SchoolEntity> GetAll( )
         {
-            return _schoolDao.GetList(Predicates.Field<SchoolEntity>(f=>f.IsDel,Operator.Eq,false));
+            var group = Predicates.Field<SchoolEntity>(f => f.IsDel, Operator.Eq, false);
+            return _cache.GetOrSetValue(CacheKey.SchoolCacheKey,()=>_schoolDao.GetList(group));
         }
 
         public IEnumerable<SchoolEntity> GetList(int[] ids)
@@ -40,7 +51,7 @@ namespace imow.Services.BussinessService.Admin
             {
                 list.Add(Predicates.Field<SchoolEntity>(f => f.Id, Operator.Eq, id));
             }
-            IPredicateGroup group = Predicates.Group(GroupOperator.And, list.ToArray());
+            IPredicateGroup group = Predicates.Group(GroupOperator.Or, list.ToArray());
             IEnumerable<SchoolEntity> dbList = _schoolDao.GetList(group);
             return dbList;
         }
@@ -49,12 +60,14 @@ namespace imow.Services.BussinessService.Admin
             List<SchoolEntity> dbList = GetList(ids).ToList();
             dbList.ForEach(f => { f.IsDel = true; });
             _schoolDao.UpdateBatch(dbList);
+            RemoveCache();
         }
         public void Restore(int[] ids)
         {
             List<SchoolEntity> dbList = GetList(ids).ToList();
             dbList.ForEach(f => { f.IsDel = false; });
             _schoolDao.UpdateBatch(dbList);
+            RemoveCache();
         }
 
         public SchoolEntity Get(int id)

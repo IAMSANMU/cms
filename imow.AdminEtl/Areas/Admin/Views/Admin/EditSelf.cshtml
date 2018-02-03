@@ -8,12 +8,11 @@
             <div class="tabs-container">
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#tab-1"> 基本资料</a></li>
-                    <li class=""><a data-toggle="tab" href="#tab-2" id="changeClass"> 角色设置</a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="tab-1" class="tab-pane active">
                         <div class="panel-body">
-                            <form role="form" id="saveForm" class="form-horizontal" method="post" action="@Url.Action("UpdateUser","Admin")">
+                            <form role="form" id="saveForm" class="form-horizontal" method="post" action="@Url.Action("EditSelf","Admin")">
                                 <input type="hidden" name="ID" value="@Model.UserEntity.Id" />
                                 <fieldset class="form-horizontal">
                                     <div class="col-sm-6">
@@ -33,18 +32,10 @@
                                             <label class="col-sm-4 control-label">性别:</label>
                                             <div class="col-sm-6">
                                                 <select class="form-control" name="Sex">
-                                                    <option value="0" @if (string.IsNullOrEmpty(Model.UserEntity.Sex) || Model.UserEntity.Sex == "0") { @Html.Raw("selected=\"selected\"")   }>未知</option>
-                                                    <option value="1" @if (Model.UserEntity.Sex == "1") { @Html.Raw("selected=\"selected\"")   }>男</option>
-                                                    <option value="2" @if (Model.UserEntity.Sex == "2") { @Html.Raw("selected=\"selected\"")   }>女</option>
+                                                    <option value="0" @if (string.IsNullOrEmpty(Model.UserEntity.Sex) || Model.UserEntity.Sex == "0") { @Html.Raw("selected=\"selected\"")    }>未知</option>
+                                                    <option value="1" @if (Model.UserEntity.Sex == "1") { @Html.Raw("selected=\"selected\"")    }>男</option>
+                                                    <option value="2" @if (Model.UserEntity.Sex == "2") { @Html.Raw("selected=\"selected\"")    }>女</option>
                                                 </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label">禁用:</label>
-                                            <div class="col-sm-6">
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox" class="i-checks" name="IsStop" @if (Model.UserEntity.IsStop) { @Html.Raw("checked=\"checked\"")    } />
-                                                </label>
                                             </div>
                                         </div>
                                     </div>
@@ -72,26 +63,8 @@
                             </form>
                         </div>
                     </div>
-                    <div id="tab-2" class="tab-pane ">
-                        <div class="panel-body">
-                            <div class="row">
-                                <ul id="roles" class="list-group">
-                                    @foreach (var item in Model.RoleList)
-                                    {
-                                        <li class="list-group-item list-group-item-text ">
-                                            <div class="checkbox-inline">
-                                                <input type="checkbox" class="i-checks" value="@item.Id" @if (Model.UserEntity.HasRole(item.Id)) { @Html.Raw("checked=\"checked\"")     } />
-                                            </div>
-                                            @item.Name
-                                        </li>
-                                    }
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
-
             <div class="ibox">
                 <div class="ibox-content text-center">
                     <button type="button" class="btn btn-w-m btn-primary ladda-button" id="btnSave" data-style="expand-right">保存</button>
@@ -109,6 +82,6 @@
 
 @section Scripts {
     @Scripts.Render("~/plugins/validate")
-    @Scripts.Render("~/Areas/Admin/Scripts/user/edit.js")
+    @Scripts.Render("~/Areas/Admin/Scripts/user/editSelf.js")
     @Scripts.Render("~/plugins/jsTree")
 }

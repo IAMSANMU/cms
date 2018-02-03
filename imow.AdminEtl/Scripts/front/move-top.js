@@ -7,4 +7,4 @@ $(containerIDhash).fadeOut(settings.Outdelay);
 };
 })(jQuery);
 
-$().UItoTop({ easingType: 'easeOutQuart' });
+$().UItoTop({ easingType: 'easeOutQuart' });

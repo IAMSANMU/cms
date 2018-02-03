@@ -27,9 +27,18 @@
                         <dl>
                             <dt>
                                 <span class="pull-right">@item.CreateTime.ToShortDateString()</span>
-                                <a target="_blank" href="@Url.Action("Info","News",new {id=item.Id})">
-                                    @item.Title
-                                </a>
+                                @if (item.Type == 0)
+                                {
+                                    <a target="_blank" href="@Url.Action("Info", "News", new {id = item.Id})">
+                                        @item.Title
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a target="_blank" href="@item.Link">
+                                        @item.Title
+                                    </a>
+                                }
                             </dt>
                             <dd>
                                 @item.Description

@@ -51,6 +51,12 @@ namespace imow.AdminEtl.Controllers
             }
             NewsModel model = new NewsModel();
             model.News = entity;
+            entity.ViewCount = entity.ViewCount + 1;
+            _service.Update(entity);
+            if (entity.Type ==1)
+            {
+                return Redirect(entity.Link);
+            }
             return View(model);
         }
 

@@ -47,7 +47,7 @@ namespace imow.Services.BussinessService.Admin
             {
                 list.Add(Predicates.Field<IndexLoopEntity>(f => f.Id, Operator.Eq, id));
             }
-            IPredicateGroup group = Predicates.Group(GroupOperator.And, list.ToArray());
+            IPredicateGroup group = Predicates.Group(GroupOperator.Or, list.ToArray());
             IEnumerable<IndexLoopEntity> dbList = _dao.GetList(group);
             return dbList;
         }

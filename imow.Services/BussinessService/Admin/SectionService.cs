@@ -42,7 +42,7 @@ namespace imow.Services.BussinessService.Admin
             {
                 list.Add(Predicates.Field<SectionEntity>(f => f.Id, Operator.Eq, id));
             }
-            IPredicateGroup group = Predicates.Group(GroupOperator.And, list.ToArray());
+            IPredicateGroup group = Predicates.Group(GroupOperator.Or, list.ToArray());
             IEnumerable<SectionEntity> dbList = _dao.GetList(group);
             return dbList;
         }

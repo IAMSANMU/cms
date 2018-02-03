@@ -31,8 +31,8 @@ public static class HMTLHelperExtensions
 
     public static string PageClass(this HtmlHelper html)
     {
-        string currentAction = (string)html.ViewContext.RouteData.Values["action"];
-        return currentAction;
+        string currentAction = (string)html.ViewContext.RouteData.Values["controller"];
+        return currentAction.ToLower();
     }
     /// <summary>
     /// 按钮是否有权限

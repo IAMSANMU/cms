@@ -53,7 +53,7 @@ namespace imow.Services.BussinessService.Admin
             {
                 list.Add(Predicates.Field<ContextEntity>(f => f.Id, Operator.Eq, id));
             }
-            IPredicateGroup group = Predicates.Group(GroupOperator.And, list.ToArray());
+            IPredicateGroup group = Predicates.Group(GroupOperator.Or, list.ToArray());
             IEnumerable<ContextEntity> dbList = _dao.GetList(group);
             return dbList;
         }
@@ -94,6 +94,7 @@ namespace imow.Services.BussinessService.Admin
         {
             return _cache.GetOrSetValue(CacheKey.TopNewsCacheKey,()=> _dao.GetTop(pageSize));
         }
+
 
         #endregion
     }
