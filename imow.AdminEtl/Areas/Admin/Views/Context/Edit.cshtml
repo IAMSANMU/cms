@@ -65,7 +65,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">说明:</label>
                                         <div class="col-sm-8">
-                                            <textarea class="form-control" name="Remark"></textarea>
+                                            <textarea class="form-control" name="Remark">@Model.ContextEntity.Remark</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +127,7 @@
                                                 <option value="" data-info="">---选择模板--</option>
                                                 @foreach (var item in Model.TemplateList)
                                                 {
-                                                    <option value="@item.Id" data-info="@item.DecodeContext" >@item.Name</option>
+                                                    <option value="@item.Id" data-info="@item.Context" >@item.Name</option>
                                                 }
                                             </select>
                                         </div>

@@ -27,6 +27,7 @@ namespace Imow.Framework.Db
         }
         public void Dispose()
         {
+         
             this.DbTransaction.Dispose();
         }
     }

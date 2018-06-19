@@ -20,7 +20,7 @@
     });
     $("[name='Type']").on("ifChanged", function (e) {
         var val = $(this).val();
-        if (val === 0) {
+        if (val == 0) {
             $(".link").addClass("hidden");
         } else {
             $(".link").removeClass("hidden");
@@ -33,6 +33,7 @@
             $.confirm("是否替换编辑的内容",
                 function() {
                     var html = target.find("option:selected").data("info");
+                    html = $.base64.decode(html, "UTF-8");
                     $(".summernote").summernote("code", html);
                     $.close();
             });
